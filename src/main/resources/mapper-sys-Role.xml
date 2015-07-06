@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.techsen.tsweb.sys.dao.RoleDao">
+    <resultMap type="Role" id="RoleMap">
+        <id property="id" column="role_id"/>
+        <result property="name" column="role_name"/>
+        <result property="desc" column="role_desc"/>
+        <result property="createBy" column="role_create_by"/>
+        <result property="createDate" column="role_create_date"/>
+        <result property="updateBy" column="role_update_by"/>
+        <result property="updateDate" column="role_update_date"/>
+        <result property="remark" column="role_remark"/>
+        
+        <collection property="users" column="role_id" ofType="User" select="com.techsen.tsweb.sys.dao.UserRoleDao.getUsersByRoleId"/>
+    </resultMap>
+
+    <sql id="UserTable">sys_user_mstr</sql>
+    <sql id="UserRoleTable">sys_userrole_det</sql>
+    <sql id="RoleTable">sys_role_mstr</sql>
+    
+    <sql id="RoleColumns">
+        role_id, role_name, role_desc,
+        role_create_by, role_create_date,
+        role_update_by, role_update_date,
+        role_remark
+    </sql>
+
+    <sql id="RoleProperties">
+        #{id}, #{name}, #{desc},
+        #{createBy}, #{createDate},
+        #{updateBy}, #{updateDate},
+        #{remark}
+    </sql>
+
+    <sql id="RoleUpdateMap">
+        role_name = #{name},
+        role_desc = #{desc},
+        <!-- role_create_by = #{createBy}, -->
+        <!-- role_create_date = #{createDate}, -->
+        role_update_by = #{updateBy},
+        role_update_date = #{updateDate},
+        role_remark = #{remark}
+    </sql>
+
+    <sql id="RoleWhereCondition">
+        <where>
+            <choose>
+                <when test="id != null">
+                    role_id = #{id}
+                </when>
+                <when test="name != null">
+                    role_name = #{name}
+                </when>
+                <otherwise>
+                    1 == 0
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+
+    <insert id="addEntity" parameterType="Role">
+        insert into <include refid="RoleTable"/> (
+            <include refid="RoleColumns"/>
+        ) values (
+            <include refid="RoleProperties"/>
+        )
+    </insert>
+
+    <delete id="deleteEntity" parameterType="Role">
+        delete from <include refid="RoleTable"/>
+        <include refid="RoleWhereCondition"/>
+    </delete>
+
+    <update id="updateEntity" parameterType="Role">
+        update <include refid="RoleTable"/>
+        set <include refid="RoleUpdateMap"/>
+        <include refid="RoleWhereCondition"/>
+    </update>
+
+    <select id="getEntity" parameterType="Role" resultMap="RoleMap">
+        select <include refid="RoleColumns"/>
+        from <include refid="RoleTable"/>
+        <include refid="RoleWhereCondition"/>
+    </select>
+
+    <select id="getById" parameterType="string" resultMap="RoleMap">
+        select <include refid="RoleColumns"/>
+        from <include refid="RoleTable"/>
+        <where> role_id = #{id} </where>
+    </select>
+
+    <select id="getAllRoles" resultMap="RoleMap">
+        select <include refid="RoleColumns"/>
+        from <include refid="RoleTable"/>
+    </select>
+
+</mapper>
