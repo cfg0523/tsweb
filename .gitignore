@@ -1,0 +1,13 @@
+.git
+
+**/.settings
+**/.project
+**/.classpath
+**/.class
+
+**/target
+**/classes
+
+**/log*.txt
+**/*.log
+
