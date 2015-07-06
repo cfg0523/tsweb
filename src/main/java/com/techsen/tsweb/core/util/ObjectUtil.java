@@ -41,13 +41,11 @@ public class ObjectUtil {
                         || Boolean.class.isAssignableFrom(fieldType)
                         || Date.class.isAssignableFrom(fieldType)
                         || Number.class.isAssignableFrom(fieldType)
-                        || Class.class.isAssignableFrom(fieldType)) {
+                        || Class.class.isAssignableFrom(fieldType)
+                        || fieldType.isEnum()) {
                     f.setAccessible(true);
                     String filedName = f.getName();
-                    if (i != 0) {
-                        sb.append(", ");
-                    }
-                    sb.append(filedName).append("=").append(f.get(obj));
+                    sb.append(filedName).append("=").append(f.get(obj)).append(", ");
                 }
             }
         } catch (Exception e) {

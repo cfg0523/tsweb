@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.techsen.tsweb.sys.dao.MenuDao">
+    <resultMap type="Menu" id="MenuMap">
+        <id property="id" column="menu_id"/>
+        <result property="name" column="menu_name"/>
+        <result property="label" column="menu_label"/>
+        <result property="path" column="menu_path"/>
+        <result property="type" column="menu_type"/>
+        <result property="auth" column="menu_auth"/>
+        
+        <result property="createBy" column="menu_create_by"/>
+        <result property="createDate" column="menu_create_date"/>
+        <result property="updateBy" column="menu_update_by"/>
+        <result property="updateDate" column="menu_update_date"/>
+        <result property="remark" column="menu_remark"/>
+        
+        <association property="parent" column="menu_parent_id" javaType="Menu" select="get"/>
+        <collection property="subMenus" column="menu_id" ofType="Menu" select="getSubMenusByParentId"/>
+    </resultMap>
+
+    <sql id="MenuTable">sys_menu_mstr</sql>
+    
+    <sql id="MenuColumns">
+        menu_id, menu_name, menu_label,
+        menu_type, menu_auth, menu_parent_id,
+        menu_create_by, menu_create_date,
+        menu_update_by, menu_update_date,
+        menu_remark
+    </sql>
+
+    <sql id="MenuProperties">
+        #{id}, #{name}, #{label},
+        #{type}, #{auth}, #{parent.id},
+        #{createBy}, #{createDate},
+        #{updateBy}, #{updateDate},
+        #{remark}
+    </sql>
+    
+    <sql id="MenuUpdateMap">
+        menu_name = #{name},
+        menu_label = #{label},
+        menu_type = #{type},
+        menu_auth = #{auth},
+        menu_parent_id = #{parent.id},
+        <!-- menu_create_by = #{createBy}, -->
+        <!-- menu_create_date = #{createDate}, -->
+        menu_update_by = #{updateBy},
+        menu_update_date = #{updateDate},
+        menu_remark = #{remark}
+    </sql>
+
+    <sql id="MenuWhereCondition">
+        <where>
+            <choose>
+                <when test="id != null">
+                    menu_id = #{id}
+                </when>
+                <otherwise>
+                    <if test="name != null">
+                        menu_name = #{name}
+                    </if>
+                    <if test="label != null">
+                        and menu_label = #{label}
+                    </if>
+                    <if test="type != null">
+                        and menu_type = #{type}
+                    </if>
+                    <if test="auth != null">
+                        and menu_auth = #{type}
+                    </if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+    
+    <insert id="add" parameterType="Menu">
+        insert into <include refid="MenuTable"/> (
+            <include refid="MenuColumns"/>
+        ) values (
+            <include refid="MenuProperties"/>
+        )
+    </insert>
+    
+    <delete id="delete" parameterType="Menu">
+        delete from <include refid="MenuTable"/>
+        <where> menu_id = #{id} </where>
+    </delete>
+    
+    <update id="update" parameterType="Menu">
+        update <include refid="MenuTable"/>
+        set <include refid="MenuUpdateMap"/>
+        <where> menu_id = #{id} </where>
+    </update>
+
+    <select id="get" parameterType="string" resultMap="MenuMap">
+        select <include refid="MenuColumns"/>
+        from <include refid="MenuTable"/>
+        <where> menu_id = #{id} </where>
+    </select>
+    
+    <select id="getByEntity" parameterType="Menu" resultMap="MenuMap">
+        select <include refid="MenuColumns"/>
+        from <include refid="MenuTable"/>
+        <include refid="MenuWhereCondition"/>
+    </select>
+    
+    <select id="findAll" resultMap="MenuMap">
+        select <include refid="MenuColumns"/>
+        from <include refid="MenuTable"/>
+    </select>
+    
+    <select id="getSubMenusByParentId" resultMap="MenuMap">
+        select <include refid="MenuColumns"/>
+        from <include refid="MenuTable"/>
+        <where> menu_parent_id = #{parentId} </where>
+    </select>
+</mapper>

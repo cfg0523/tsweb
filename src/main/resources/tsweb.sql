@@ -70,12 +70,12 @@ insert into sys_userrole_det values ('UR07', 'U05', 'R03', '', null, '', null, '
 drop table if exists sys_menu_mstr;
 create table sys_menu_mstr (
     menu_id varchar(32) comment '菜单ID',
-    menu_name varchar(32) comment '菜单名称',
+    menu_name varchar(32) not null comment '菜单名称',
     menu_label varchar(32) comment '菜单描述',
     menu_path varchar(32) comment '菜单路径',
     menu_type varchar(32) comment '菜单类型',
-    menu_parent_id varchar(32) comment '父级菜单ID',
     menu_auth varchar(32) comment '菜单权限标识',
+    menu_parent_id varchar(32) comment '父级菜单ID',
     menu_create_by varchar(32) comment '创建人ID',
     menu_create_date datetime comment '创建时间',
     menu_update_by varchar(32) comment '修改人ID',
@@ -84,25 +84,25 @@ create table sys_menu_mstr (
     primary key(menu_id),
     unique key(menu_name)
 ) comment '菜单表';
-insert into sys_menu_mstr values ('M00', '/', 'TSWEB', '/', 'BRAND', null, '*', '', null, '', null, '');
+insert into sys_menu_mstr values ('M00', '/', 'TSWEB', '/', 'BRAND', '*', null, '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M01', 'sys', '系统管理', '/sys', 'TOP_MODULE', 'MD00', 'sys', '', null, '', null, '');
-insert into sys_menu_mstr values ('M02', 'qareport', 'QAReport', '/qareport', 'TOP_MODULE', 'MD00', 'qareport', '', null, '', null, '');
-insert into sys_menu_mstr values ('M03', 'module', '模块管理', '', 'TOP_MODULE', 'MD00', 'module', '', null, '', null, '');
+insert into sys_menu_mstr values ('M01', 'sys', '系统管理', '/sys', 'TOP_MODULE', 'sys', 'M00', '', null, '', null, '');
+insert into sys_menu_mstr values ('M02', 'qareport', 'QAReport', '/qareport', 'TOP_MODULE', 'qareport', 'M00', '', null, '', null, '');
+insert into sys_menu_mstr values ('M03', 'module', '模块管理', '', 'TOP_MODULE', 'module', 'M00', '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M04', 'csm', 'CSM', '/csm', 'SUB_MODULE', 'MD03', 'csm', '', null, '', null, '');
-insert into sys_menu_mstr values ('M05', 'ehr', 'EHR', '/ehr', 'SUB_MODULE', 'MD03', 'ehr', '', null, '', null, '');
+insert into sys_menu_mstr values ('M04', 'csm', 'CSM', '/csm', 'SUB_MODULE', 'csm', 'M03', '', null, '', null, '');
+insert into sys_menu_mstr values ('M05', 'ehr', 'EHR', '/ehr', 'SUB_MODULE', 'ehr', 'M03', '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M06', 'user', '用户管理', '/sys/user', 'TOP_NAV', 'M01', 'sys:user', '', null, '', null, '');
-insert into sys_menu_mstr values ('M07', 'role', '角色管理', '/sys/role', 'TOP_NAV', 'M01', 'sys:role', '', null, '', null, '');
-insert into sys_menu_mstr values ('M08', 'menu', '菜单管理', '/sys/menu', 'TOP_NAV', 'M01', 'sys:menu', '', null, '', null, '');
+insert into sys_menu_mstr values ('M06', 'user', '用户管理', '/sys/user', 'TOP_NAV', 'sys:user', 'M01', '', null, '', null, '');
+insert into sys_menu_mstr values ('M07', 'role', '角色管理', '/sys/role', 'TOP_NAV', 'sys:role', 'M01', '', null, '', null, '');
+insert into sys_menu_mstr values ('M08', 'menu', '菜单管理', '/sys/menu', 'TOP_NAV', 'sys:menu', 'M01', '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M09', 'daily', 'Daily', '/qareport/daily', 'TOP_NAV', 'M02', 'qareport:daily', '', null, '', null, '');
-insert into sys_menu_mstr values ('M10', 'detail', 'Detail', '', 'TOP_NAV', 'M02', 'qareport:detail', '', null, '', null, '');
-insert into sys_menu_mstr values ('M11', 'master', 'Master', '', 'TOP_NAV', 'M02', 'qareport:master', '', null, '', null, '');
+insert into sys_menu_mstr values ('M09', 'daily', 'Daily', '/qareport/daily', 'TOP_NAV', 'qareport:daily', 'M02', '', null, '', null, '');
+insert into sys_menu_mstr values ('M10', 'detail', 'Detail', '', 'TOP_NAV', 'qareport:detail', 'M02', '', null, '', null, '');
+insert into sys_menu_mstr values ('M11', 'master', 'Master', '', 'TOP_NAV', 'qareport:master', 'M02', '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M12', 'podetail', 'PO Detail', '/qareport/podetail', 'SUB_NAV', 'M10', 'qareport:podetail', '', null, '', null, '');
-insert into sys_menu_mstr values ('M13', 'aqldetail', 'AQL Detail', '/qareport/aqldetail', 'SUB_NAV', 'M10', 'qareport:aqldetail', '', null, '', null, '');
-insert into sys_menu_mstr values ('M14', 'dftdetail', 'DFT Detail', '/qareport/dftdetail', 'SUB_NAV', 'M10', 'qareport:dftdetail', '', null, '', null, '');
-insert into sys_menu_mstr values ('M15', 'pkgdetail', 'PKG Detail', '/qareport/pkgdetail', 'SUB_NAV', 'M10', 'qareport:pkgdetail', '', null, '', null, '');
-insert into sys_menu_mstr values ('M16', 'techdetail', 'TECH Detail', '/qareport/techdetail', 'SUB_NAV', 'M10', 'qareport:techdetail', '', null, '', null, '');
+insert into sys_menu_mstr values ('M12', 'podetail', 'PO Detail', '/qareport/podetail', 'SUB_NAV', 'qareport:podetail', 'M10', '', null, '', null, '');
+insert into sys_menu_mstr values ('M13', 'aqldetail', 'AQL Detail', '/qareport/aqldetail', 'SUB_NAV', 'qareport:aqldetail', 'M10', '', null, '', null, '');
+insert into sys_menu_mstr values ('M14', 'dftdetail', 'DFT Detail', '/qareport/dftdetail', 'SUB_NAV', 'qareport:dftdetail', 'M10', '', null, '', null, '');
+insert into sys_menu_mstr values ('M15', 'pkgdetail', 'PKG Detail', '/qareport/pkgdetail', 'SUB_NAV', 'qareport:pkgdetail', 'M10', '', null, '', null, '');
+insert into sys_menu_mstr values ('M16', 'techdetail', 'TECH Detail', '/qareport/techdetail', 'SUB_NAV', 'qareport:techdetail', 'M10', '', null, '', null, '');

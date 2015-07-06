@@ -11,6 +11,7 @@ public class Menu extends BaseEntity<Menu> {
     private String name;
     private String label;
     private String path;
+    private MenuType type = MenuType.MENU;
     private String auth;
 
     private Menu parent;
@@ -40,6 +41,15 @@ public class Menu extends BaseEntity<Menu> {
 
     public Menu setPath(String path) {
         this.path = path;
+        return this;
+    }
+
+    public MenuType getType() {
+        return type;
+    }
+
+    public Menu setType(MenuType type) {
+        this.type = type;
         return this;
     }
 
