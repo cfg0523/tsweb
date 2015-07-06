@@ -1,4 +1,4 @@
-package tsweb;
+package com.techsen.tsweb.core.util;
 
 import org.junit.Test;
 
