@@ -18,11 +18,6 @@
     <!-- 启用 AspectJ代理-->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <!-- 启用Shiro的注解权限拦截 -->
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-        <property name="securityManager" ref="securityManager"/>
-    </bean>
-
     <!-- 处理静态资源 -->
     <mvc:default-servlet-handler/>
 
