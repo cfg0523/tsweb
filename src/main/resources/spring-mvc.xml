@@ -20,6 +20,13 @@
 
     <!-- 处理静态资源 -->
     <mvc:default-servlet-handler/>
+    
+    <mvc:interceptors>  
+        <mvc:interceptor>  
+            <mvc:mapping path="/*"/>
+            <bean class="com.techsen.tsweb.sys.interceptor.ModuleInterceptor"/>
+        </mvc:interceptor>  
+    </mvc:interceptors>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"/>

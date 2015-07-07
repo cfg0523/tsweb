@@ -7,8 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.techsen.tsweb.sys.domain.Menu;
-import com.techsen.tsweb.sys.domain.MenuType;
 import com.techsen.tsweb.sys.service.MenuService;
 
 @Controller
@@ -19,21 +17,12 @@ public class MenuController {
     
     @RequestMapping("/")
     public String main(Model model) {
-        
-        Menu brand = this.menuService.getByEntity(new Menu().setType(MenuType.BRAND));
-        model.addAttribute("brand", brand);
-        
-        return "sys/main";
+        return "main";
     }
     
     @RequestMapping("/{module}")
-    public String sys(@PathVariable String module, Model model) {
-        Menu brand = this.menuService.getByEntity(new Menu().setType(MenuType.BRAND));
-        model.addAttribute("brand", brand);
-        
-        Menu moduleMenu = this.menuService.getByEntity(new Menu().setName(module).setType(null));
-        model.addAttribute("module", moduleMenu);
-        return "sys/main";
+    public String module(@PathVariable String module, Model model) {
+        return module + "/" + module;
     }
     
 }

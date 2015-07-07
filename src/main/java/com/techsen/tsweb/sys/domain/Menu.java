@@ -11,7 +11,7 @@ public class Menu extends BaseEntity<Menu> {
     private String name;
     private String label;
     private String path;
-    private MenuType type = MenuType.MENU;
+    private MenuType type;
     private String auth;
 
     private Menu parent;

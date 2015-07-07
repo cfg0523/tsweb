@@ -106,3 +106,5 @@ insert into sys_menu_mstr values ('M13', 'aqldetail', 'AQL Detail', '/qareport/a
 insert into sys_menu_mstr values ('M14', 'dftdetail', 'DFT Detail', '/qareport/dftdetail', 'SUB_NAV', 'qareport:dftdetail', 'M10', '', null, '', null, '');
 insert into sys_menu_mstr values ('M15', 'pkgdetail', 'PKG Detail', '/qareport/pkgdetail', 'SUB_NAV', 'qareport:pkgdetail', 'M10', '', null, '', null, '');
 insert into sys_menu_mstr values ('M16', 'techdetail', 'TECH Detail', '/qareport/techdetail', 'SUB_NAV', 'qareport:techdetail', 'M10', '', null, '', null, '');
+
+insert into sys_menu_mstr values ('M17', 'aqlmaster', 'AQL Master', '/qareport/aqlmaster', 'SUB_NAV', 'qareport:aqlmaster', 'M11', '', null, '', null, '');
