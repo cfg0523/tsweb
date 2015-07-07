@@ -79,5 +79,5 @@ public class Menu extends BaseEntity<Menu> {
         this.subMenus = subMenus;
         return this;
     }
-    
+
 }

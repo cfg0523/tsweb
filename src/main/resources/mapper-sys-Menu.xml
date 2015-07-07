@@ -23,7 +23,7 @@
     <sql id="MenuTable">sys_menu_mstr</sql>
     
     <sql id="MenuColumns">
-        menu_id, menu_name, menu_label,
+        menu_id, menu_name, menu_label, menu_path,
         menu_type, menu_auth, menu_parent_id,
         menu_create_by, menu_create_date,
         menu_update_by, menu_update_date,
@@ -31,7 +31,7 @@
     </sql>
 
     <sql id="MenuProperties">
-        #{id}, #{name}, #{label},
+        #{id}, #{name}, #{label}, #{path},
         #{type}, #{auth}, #{parent.id},
         #{createBy}, #{createDate},
         #{updateBy}, #{updateDate},
@@ -41,6 +41,7 @@
     <sql id="MenuUpdateMap">
         menu_name = #{name},
         menu_label = #{label},
+        menu_path = #{path},
         menu_type = #{type},
         menu_auth = #{auth},
         menu_parent_id = #{parent.id},

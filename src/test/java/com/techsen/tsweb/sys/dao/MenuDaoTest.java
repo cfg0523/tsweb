@@ -18,13 +18,13 @@ public class MenuDaoTest {
 
     @Resource
     private MenuDao menuDao;
-    
+
     @Test
     public void testGet() {
         Menu menu = this.menuDao.get("M01");
         Menu parent = menu.getParent();
         List<Menu> subMenus = menu.getSubMenus();
-        
+
         System.out.println(menu.getName());
         System.out.println(parent.getName());
         System.out.println(subMenus.size());
@@ -34,13 +34,21 @@ public class MenuDaoTest {
     public void testAddUpdateDelete() {
         Menu menu = new Menu().setId("MT01");
         menu.setName("test").setPath("/test");
+        this.menuDao.add(menu);
+
         menu.setLabel("TEST").setAuth("test");
         menu.setCreateBy("U01").setCreateDate(new Date());
         menu.setUpdateBy("U01").setUpdateDate(new Date());
         menu.setRemark("TEST REMARK");
-        
-        this.menuDao.add(menu);
+        this.menuDao.update(menu);
+
         this.menuDao.delete(menu);
+    }
+
+    @Test
+    public void testFindAll() {
+        List<Menu> menus = this.menuDao.findAll();
+        System.out.println(menus);
     }
     
 }

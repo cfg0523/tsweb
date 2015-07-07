@@ -76,7 +76,6 @@ public class ObjectUtil {
 
     /**
      * 深度复制技术克隆对象
-     * 
      * @exception 如果克隆失败会抛出运行期异常
      */
     @SuppressWarnings("unchecked")
