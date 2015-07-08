@@ -37,7 +37,7 @@
 	                <span>用户</span> <span class="caret"></span>
 	            </a>
 	            <ul class="dropdown-menu dropdown-menu-right">
-	                <li><a href='<c:url value="/sys/logout"/>'>退出</a></li>
+	                <li><a href='<c:url value="/logout"/>'>退出</a></li>
                 </ul>
             </li>
         </ul>

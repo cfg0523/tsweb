@@ -20,17 +20,19 @@ public class ModuleInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request,
             HttpServletResponse response, Object handler,
             ModelAndView modelAndView) throws Exception {
+        
         String servletPath = request.getServletPath();
-        if (!"/".equals(servletPath)) {
-            String[] strs = servletPath.split("/");
-            if (strs.length >= 2) {
-                String module = strs[1];
-                Menu moduleMenu = this.menuService.getByEntity(new Menu().setName(module));
-                modelAndView.getModel().put("moduleMenu", moduleMenu);
-            }
+        
+        String[] strs = servletPath.split("/");
+        if (strs.length >= 2) {
+            String module = strs[1];
+            Menu moduleMenu = this.menuService.getByEntity(new Menu().setName(module));
+            modelAndView.getModel().put("moduleMenu", moduleMenu);
         }
+        
         Menu brandMenu = this.menuService.getByEntity(new Menu().setType(MenuType.BRAND));
         modelAndView.getModel().put("brandMenu", brandMenu);
+        
         super.postHandle(request, response, handler, modelAndView);
     }
     

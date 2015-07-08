@@ -15,13 +15,13 @@ public class MenuController {
     @Resource
     private MenuService menuService;
     
-    @RequestMapping("/")
-    public String main(Model model) {
-        return "main";
-    }
-    
     @RequestMapping("/{module}")
     public String module(@PathVariable String module, Model model) {
+        
+        System.out.println("--------------------");
+        System.out.println(module);
+        System.out.println("--------------------");
+        
         return module + "/" + module;
     }
     

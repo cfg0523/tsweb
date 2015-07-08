@@ -6,6 +6,7 @@ create table sys_user_mstr (
     user_id varchar(32),
     user_name varchar(32) not null comment '用户英文名',
     user_password varchar(32) not null comment '密码',
+    user_index_menu varchar(32) not null comment '用户登录成功默认跳转的页面ID',
     user_create_by varchar(32) comment '创建人ID',
     user_create_date datetime comment '创建时间',
     user_update_by varchar(32) comment '修改人ID',
@@ -14,11 +15,11 @@ create table sys_user_mstr (
     primary key(user_id),
     unique key(user_name)
 ) comment '用户表';
-insert into sys_user_mstr values ('U01', 'hayden', 'hayden', '', null, '', null, '');
-insert into sys_user_mstr values ('U02', 'fantasy', 'fantasy', '', null, '', null, '');
-insert into sys_user_mstr values ('U03', 'giny', 'giny', '', null, '', null, '');
-insert into sys_user_mstr values ('U04', 'yilia', 'yilia', '', null, '', null, '');
-insert into sys_user_mstr values ('U05', 'tracy', 'tracy', '', null, '', null, '');
+insert into sys_user_mstr values ('U01', 'hayden', 'hayden', 'M01', '', null, '', null, '');
+insert into sys_user_mstr values ('U02', 'fantasy', 'fantasy', 'M04', '', null, '', null, '');
+insert into sys_user_mstr values ('U03', 'giny', 'giny', 'M01', '', null, '', null, '');
+insert into sys_user_mstr values ('U04', 'yilia', 'yilia', 'M02', '', null, '', null, '');
+insert into sys_user_mstr values ('U05', 'tracy', 'tracy', 'M02', '', null, '', null, '');
 
 /**
  * sys_role_mstr
