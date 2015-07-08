@@ -10,4 +10,37 @@
         http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
+    <!-- 配置Shiro的安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="localRealm" />
+    </bean>
+
+    <!-- 配置ShiroFilter -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+        <property name="loginUrl" value="/login" />
+        <property name="unauthorizedUrl" value="/login" />
+        <property name="filterChainDefinitions">
+            <value>
+                /static/**=anon
+                /=anon
+                /login=anon
+                /logout=anon
+                /**.js=anon
+                /**.css=anon
+                /**.json=anon
+                /**.jsonp=anon
+                /**=authc
+            </value>
+        </property>
+    </bean>
+
+    <!-- 出来Shiro Bean的生命周期 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+    <!-- 启用Shiro的注解权限配置 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true" />
+    </bean>
+
 </beans>

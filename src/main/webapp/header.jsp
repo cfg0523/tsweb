@@ -34,7 +34,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	                <span>用户</span> <span class="caret"></span>
+	                <span><shiro:principal/></span> <span class="caret"></span>
 	            </a>
 	            <ul class="dropdown-menu dropdown-menu-right">
 	                <li><a href='<c:url value="/logout"/>'>退出</a></li>

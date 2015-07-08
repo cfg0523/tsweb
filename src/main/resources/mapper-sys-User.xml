@@ -53,6 +53,9 @@
                     <if test="username != null">
                         user_name = #{username}
                     </if>
+                    <if test="username != null">
+                        and user_password = #{password}
+                    </if>
                     <if test="indexMenu != null and indexMenu.id != null">
                         and user_index_menu = #{indexMenu.id}
                     </if>
