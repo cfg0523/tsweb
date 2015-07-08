@@ -14,6 +14,7 @@
         <result property="remark" column="user_remark"/>
         
         <association property="indexMenu" column="user_index_menu" javaType="Menu" select="com.techsen.tsweb.sys.dao.MenuDao.get"/>
+        <collection property="userRoles" column="user_id" ofType="UserRole" select="com.techsen.tsweb.sys.dao.UserRoleDao.getUserRolesByUserId"/>
     </resultMap>
 
     <sql id="UserTable">sys_user_mstr</sql>

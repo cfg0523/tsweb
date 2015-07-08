@@ -1,5 +1,7 @@
 package com.techsen.tsweb.sys.domain;
 
+import java.util.List;
+
 import com.techsen.tsweb.core.domain.BaseEntity;
 
 public class User extends BaseEntity<User> {
@@ -10,6 +12,8 @@ public class User extends BaseEntity<User> {
     private String password;
 
     private Menu indexMenu;
+    
+    private List<UserRole> userRoles;
 
     public String getUsername() {
         return username;
@@ -35,6 +39,15 @@ public class User extends BaseEntity<User> {
 
     public User setIndexMenu(Menu indexMenu) {
         this.indexMenu = indexMenu;
+        return this;
+    }
+
+    public List<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public User setUserRoles(List<UserRole> userRoles) {
+        this.userRoles = userRoles;
         return this;
     }
 

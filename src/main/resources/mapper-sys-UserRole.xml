@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.techsen.tsweb.sys.dao.UserRoleDao">
+    <resultMap type="UserRole" id="UserRoleMap">
+        <id property="id" column="userrole_id"/>
+        
+        <result property="createBy" column="userrole_create_by"/>
+        <result property="createDate" column="userrole_create_date"/>
+        <result property="updateBy" column="userrole_update_by"/>
+        <result property="updateDate" column="userrole_update_date"/>
+        <result property="remark" column="userrole_remark"/>
+        
+        <association property="user" column="userrole_user_id" javaType="User" select="com.techsen.tsweb.sys.dao.UserDao.get"/>
+        <association property="role" column="userrole_role_id" javaType="Role" select="com.techsen.tsweb.sys.dao.RoleDao.get"/>
+    </resultMap>
+
+    <sql id="UserRoleTable">sys_userrole_mstr</sql>
+    
+    <sql id="UserRoleColumns">
+        userrole_id, userrole_user_id, userrole_role_id,
+        userrole_create_by, userrole_create_date,
+        userrole_update_by, userrole_update_date,
+        userrole_remark
+    </sql>
+
+    <sql id="UserRoleProperties">
+        #{id}, #{user.id}, #{role.id},
+        #{createBy}, #{createDate},
+        #{updateBy}, #{updateDate},
+        #{remark}
+    </sql>
+    
+    <sql id="UserRoleUpdateMap">
+        userrole_user_id = #{user.id},
+        userrole_role_id = #{role.id},
+        <!-- userrole_create_by = #{createBy}, -->
+        <!-- userrole_create_date = #{createDate}, -->
+        userrole_update_by = #{updateBy},
+        userrole_update_date = #{updateDate},
+        userrole_remark = #{remark}
+    </sql>
+
+    <sql id="UserRoleWhereCondition">
+        <where>
+            <choose>
+                <when test="id != null">
+                    userrole_id = #{id}
+                </when>
+                <otherwise>
+                    <if test="user != null and user.id != null">
+                        userrole_user_id = #{user.id}
+                    </if>
+                    <if test="role != null and role.id != null">
+                        and userrole_role_id = #{role.id}
+                    </if>
+                </otherwise>
+            </choose>
+        </where>
+    </sql>
+    
+    <insert id="add" parameterType="UserRole">
+        insert into <include refid="UserRoleTable"/> (
+            <include refid="UserRoleColumns"/>
+        ) values (
+            <include refid="UserRoleProperties"/>
+        )
+    </insert>
+    
+    <delete id="delete" parameterType="UserRole">
+        delete from <include refid="UserRoleTable"/>
+        <where> userrole_id = #{id} </where>
+    </delete>
+    
+    <update id="update" parameterType="UserRole">
+        update <include refid="UserRoleTable"/>
+        set <include refid="UserRoleUpdateMap"/>
+        <where> userrole_id = #{id} </where>
+    </update>
+
+    <select id="get" parameterType="string" resultMap="UserRoleMap">
+        select <include refid="UserRoleColumns"/>
+        from <include refid="UserRoleTable"/>
+        <where> userrole_id = #{id} </where>
+    </select>
+    
+    <select id="getByEntity" parameterType="UserRole" resultMap="UserRoleMap">
+        select <include refid="UserRoleColumns"/>
+        from <include refid="UserRoleTable"/>
+        <include refid="UserRoleWhereCondition"/>
+    </select>
+    
+    <select id="findAll" resultMap="UserRoleMap">
+        select <include refid="UserRoleColumns"/>
+        from <include refid="UserRoleTable"/>
+    </select>
+    
+    <select id="getUserRolesByUserId" parameterType="string" resultMap="UserRoleMap">
+        select <include refid="UserRoleColumns"/>
+        from <include refid="UserRoleTable"/>
+        <where> userrole_user_id = #{userId} </where>
+    </select>
+    
+    <select id="getUserRolesByRoleId" parameterType="string" resultMap="UserRoleMap">
+        select <include refid="UserRoleColumns"/>
+        from <include refid="UserRoleTable"/>
+        <where> userrole_role_id = #{roleId} </where>
+    </select>
+</mapper>

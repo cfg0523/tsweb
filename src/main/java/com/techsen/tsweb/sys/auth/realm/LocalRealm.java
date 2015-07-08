@@ -14,7 +14,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.stereotype.Component;
 
+import com.techsen.tsweb.sys.domain.Role;
 import com.techsen.tsweb.sys.domain.User;
+import com.techsen.tsweb.sys.domain.UserRole;
 import com.techsen.tsweb.sys.service.UserService;
 import com.techsen.tsweb.sys.util.SysConst;
 
@@ -27,7 +29,10 @@ public class LocalRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo (
             PrincipalCollection principals) {
-        //User user = (User) SecurityUtils.getSubject().getSession().getAttribute(SysConst.LOGIN_USER);
+        User user = (User) SecurityUtils.getSubject().getSession().getAttribute(SysConst.LOGIN_USER);
+        for (UserRole userRole : user.getUserRoles()) {
+            Role role = userRole.getRole();
+        }
         return null;
     }
 
