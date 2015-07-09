@@ -109,20 +109,4 @@ insert into sys_menu_mstr values ('M15', 'pkgdetail', 'PKG Detail', '/qareport/p
 insert into sys_menu_mstr values ('M16', 'techdetail', 'TECH Detail', '/qareport/techdetail', 'SUB_NAV', 'qareport:techdetail', 'M10', '', null, '', null, '');
 
 insert into sys_menu_mstr values ('M17', 'aqlmaster', 'AQL Master', '/qareport/aqlmaster', 'SUB_NAV', 'qareport:aqlmaster', 'M11', '', null, '', null, '');
-
-/**
- * sys_auth_mstr
- */
-drop table if exists sys_auth_mstr;
-create table sys_auth_mstr (
-    auth_id varchar(32) comment '权限ID',
-    auth_name varchar(32) not null comment '权限名',
-    auth_label varchar(32) comment '权限描述',
-    auth_create_by varchar(32) comment '创建人ID',
-    auth_create_date datetime comment '创建时间',
-    auth_update_by varchar(32) comment '修改人ID',
-    auth_update_date datetime comment '修改时间',
-    auth_remark varchar(256) comment '备注',
-    primary key(auth_id),
-    unique key(auth_name)
-) comment '权限表';
+insert into sys_menu_mstr values ('M18', 'codemaster', 'Code Master', '/qareport/codemaster', 'SUB_NAV', 'qareport:codemaster', 'M11', '', null, '', null, '');
