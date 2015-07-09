@@ -15,7 +15,7 @@
         <association property="role" resultMap="com.techsen.tsweb.sys.dao.RoleDao.RoleMap"/>
     </resultMap>
 
-    <sql id="UserRoleTable">sys_userrole_mstr</sql>
+    <sql id="UserRoleTable">sys_userrole_det</sql>
     
     <sql id="UserRoleColumns">
         userrole_id, userrole_user_id, userrole_role_id,

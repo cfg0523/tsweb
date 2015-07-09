@@ -11,8 +11,8 @@ public class Menu extends BaseEntity<Menu> {
     private String name;
     private String label;
     private String path;
-    private MenuType type;
-    private String authName;
+    private String authGroup;
+    private int authIndex;
 
     private Menu parent;
     private List<Menu> subMenus;
@@ -44,21 +44,21 @@ public class Menu extends BaseEntity<Menu> {
         return this;
     }
 
-    public MenuType getType() {
-        return type;
+    public String getAuthGroup() {
+        return authGroup;
     }
 
-    public Menu setType(MenuType type) {
-        this.type = type;
+    public Menu setAuthGroup(String authGroup) {
+        this.authGroup = authGroup;
         return this;
     }
 
-    public String getAuthName() {
-        return authName;
+    public int getAuthIndex() {
+        return authIndex;
     }
 
-    public Menu setAuthName(String authName) {
-        this.authName = authName;
+    public Menu setAuthIndex(int authIndex) {
+        this.authIndex = authIndex;
         return this;
     }
 

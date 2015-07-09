@@ -36,7 +36,7 @@ public class MenuDaoTest {
         menu.setName("test").setPath("/test");
         this.menuDao.add(menu);
 
-        menu.setLabel("TEST").setAuthName("test");
+        menu.setLabel("TEST").setAuthGroup("test");
         menu.setCreateBy("U01").setCreateDate(new Date());
         menu.setUpdateBy("U01").setUpdateDate(new Date());
         menu.setRemark("TEST REMARK");
