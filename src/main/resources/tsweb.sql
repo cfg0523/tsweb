@@ -28,7 +28,7 @@ drop table if exists sys_role_mstr;
 create table sys_role_mstr (
     role_id varchar(32),
     role_name varchar(32) not null comment '角色名',
-    role_desc varchar(32) comment '角色描述',
+    role_label varchar(32) comment '角色描述',
     role_create_by varchar(32) comment '创建人ID',
     role_create_date datetime comment '创建时间',
     role_update_by varchar(32) comment '修改人ID',
@@ -42,10 +42,10 @@ insert into sys_role_mstr values ('R02', 'manager', '经理', '', null, '', null
 insert into sys_role_mstr values ('R03', 'staff', '职员', '', null, '', null, '');
 
 /**
- * sys_userrole_det
+ * sys_userrole_mstr
  */
-drop table if exists sys_userrole_det;
-create table sys_userrole_det (
+drop table if exists sys_userrole_mstr;
+create table sys_userrole_mstr (
     userrole_id varchar(32) comment '用户角色ID',
     userrole_user_id varchar(32) not null comment '用户ID',
     userrole_role_id varchar(32) not null comment '角色ID',
@@ -57,13 +57,13 @@ create table sys_userrole_det (
     primary key(userrole_id),
     unique key(userrole_user_id, userrole_role_id)
 ) comment '用户角色表';
-insert into sys_userrole_det values ('UR01', 'U01', 'R01', '', null, '', null, '');
-insert into sys_userrole_det values ('UR02', 'U01', 'R03', '', null, '', null, '');
-insert into sys_userrole_det values ('UR03', 'U02', 'R01', '', null, '', null, '');
-insert into sys_userrole_det values ('UR04', 'U02', 'R03', '', null, '', null, '');
-insert into sys_userrole_det values ('UR05', 'U03', 'R02', '', null, '', null, '');
-insert into sys_userrole_det values ('UR06', 'U04', 'R03', '', null, '', null, '');
-insert into sys_userrole_det values ('UR07', 'U05', 'R03', '', null, '', null, '');
+insert into sys_userrole_mstr values ('UR01', 'U01', 'R01', '', null, '', null, '');
+insert into sys_userrole_mstr values ('UR02', 'U01', 'R03', '', null, '', null, '');
+insert into sys_userrole_mstr values ('UR03', 'U02', 'R01', '', null, '', null, '');
+insert into sys_userrole_mstr values ('UR04', 'U02', 'R03', '', null, '', null, '');
+insert into sys_userrole_mstr values ('UR05', 'U03', 'R02', '', null, '', null, '');
+insert into sys_userrole_mstr values ('UR06', 'U04', 'R03', '', null, '', null, '');
+insert into sys_userrole_mstr values ('UR07', 'U05', 'R03', '', null, '', null, '');
 
 /**
  * sys_menu_mstr
@@ -75,7 +75,7 @@ create table sys_menu_mstr (
     menu_label varchar(32) comment '菜单描述',
     menu_path varchar(32) comment '菜单路径',
     menu_type varchar(32) comment '菜单类型',
-    menu_auth varchar(32) comment '菜单权限标识',
+    menu_auth_name varchar(32) comment '菜单权限标识名',
     menu_parent_id varchar(32) comment '父级菜单ID',
     menu_create_by varchar(32) comment '创建人ID',
     menu_create_date datetime comment '创建时间',
@@ -109,3 +109,20 @@ insert into sys_menu_mstr values ('M15', 'pkgdetail', 'PKG Detail', '/qareport/p
 insert into sys_menu_mstr values ('M16', 'techdetail', 'TECH Detail', '/qareport/techdetail', 'SUB_NAV', 'qareport:techdetail', 'M10', '', null, '', null, '');
 
 insert into sys_menu_mstr values ('M17', 'aqlmaster', 'AQL Master', '/qareport/aqlmaster', 'SUB_NAV', 'qareport:aqlmaster', 'M11', '', null, '', null, '');
+
+/**
+ * sys_auth_mstr
+ */
+drop table if exists sys_auth_mstr;
+create table sys_auth_mstr (
+    auth_id varchar(32) comment '权限ID',
+    auth_name varchar(32) not null comment '权限名',
+    auth_label varchar(32) comment '权限描述',
+    auth_create_by varchar(32) comment '创建人ID',
+    auth_create_date datetime comment '创建时间',
+    auth_update_by varchar(32) comment '修改人ID',
+    auth_update_date datetime comment '修改时间',
+    auth_remark varchar(256) comment '备注',
+    primary key(auth_id),
+    unique key(auth_name)
+) comment '权限表';

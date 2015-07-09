@@ -12,7 +12,7 @@ public class Menu extends BaseEntity<Menu> {
     private String label;
     private String path;
     private MenuType type;
-    private String auth;
+    private String authName;
 
     private Menu parent;
     private List<Menu> subMenus;
@@ -53,12 +53,12 @@ public class Menu extends BaseEntity<Menu> {
         return this;
     }
 
-    public String getAuth() {
-        return auth;
+    public String getAuthName() {
+        return authName;
     }
 
-    public Menu setAuth(String auth) {
-        this.auth = auth;
+    public Menu setAuthName(String authName) {
+        this.authName = authName;
         return this;
     }
 

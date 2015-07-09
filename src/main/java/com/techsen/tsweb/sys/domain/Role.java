@@ -9,7 +9,7 @@ public class Role extends BaseEntity<Role> {
     private static final long serialVersionUID = -6627118770868694695L;
 
     private String name;
-    private String desc;
+    private String label;
     
     private List<UserRole> userRoles;
 
@@ -22,12 +22,12 @@ public class Role extends BaseEntity<Role> {
         return this;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getLabel() {
+        return label;
     }
 
-    public Role setDesc(String desc) {
-        this.desc = desc;
+    public Role setLabel(String label) {
+        this.label = label;
         return this;
     }
 

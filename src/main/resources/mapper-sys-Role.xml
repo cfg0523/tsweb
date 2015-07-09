@@ -5,7 +5,7 @@
     <resultMap type="Role" id="RoleMap">
         <id property="id" column="role_id"/>
         <result property="name" column="role_name"/>
-        <result property="desc" column="role_desc"/>
+        <result property="label" column="role_label"/>
         
         <result property="createBy" column="role_create_by"/>
         <result property="createDate" column="role_create_date"/>
@@ -19,14 +19,14 @@
     <sql id="RoleTable">sys_role_mstr</sql>
     
     <sql id="RoleColumns">
-        role_id, role_name, role_desc,
+        role_id, role_name, role_label,
         role_create_by, role_create_date,
         role_update_by, role_update_date,
         role_remark
     </sql>
 
     <sql id="RoleProperties">
-        #{id}, #{name}, #{desc},
+        #{id}, #{name}, #{label},
         #{createBy}, #{createDate},
         #{updateBy}, #{updateDate},
         #{remark}
@@ -34,7 +34,7 @@
     
     <sql id="RoleUpdateMap">
         role_name = #{name},
-        role_desc = #{desc},
+        role_label = #{label},
         <!-- role_create_by = #{createBy}, -->
         <!-- role_create_date = #{createDate}, -->
         role_update_by = #{updateBy},
@@ -52,8 +52,8 @@
                     <if test="name != null">
                         role_name = #{name}
                     </if>
-                    <if test="desc != null">
-                        and role_desc = #{desc}
+                    <if test="label != null">
+                        and role_label = #{label}
                     </if>
                 </otherwise>
             </choose>

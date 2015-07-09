@@ -8,7 +8,7 @@
         <result property="label" column="menu_label"/>
         <result property="path" column="menu_path"/>
         <result property="type" column="menu_type"/>
-        <result property="auth" column="menu_auth"/>
+        <result property="authName" column="menu_auth_name"/>
         
         <result property="createBy" column="menu_create_by"/>
         <result property="createDate" column="menu_create_date"/>
@@ -24,7 +24,7 @@
     
     <sql id="MenuColumns">
         menu_id, menu_name, menu_label, menu_path,
-        menu_type, menu_auth, menu_parent_id,
+        menu_type, menu_auth_name, menu_parent_id,
         menu_create_by, menu_create_date,
         menu_update_by, menu_update_date,
         menu_remark
@@ -32,7 +32,7 @@
 
     <sql id="MenuProperties">
         #{id}, #{name}, #{label}, #{path},
-        #{type}, #{auth}, #{parent.id},
+        #{type}, #{authName}, #{parent.id},
         #{createBy}, #{createDate},
         #{updateBy}, #{updateDate},
         #{remark}
@@ -43,7 +43,7 @@
         menu_label = #{label},
         menu_path = #{path},
         menu_type = #{type},
-        menu_auth = #{auth},
+        menu_auth_name = #{authName},
         menu_parent_id = #{parent.id},
         <!-- menu_create_by = #{createBy}, -->
         <!-- menu_create_date = #{createDate}, -->
@@ -68,8 +68,8 @@
                     <if test="type != null">
                         and menu_type = #{type}
                     </if>
-                    <if test="auth != null">
-                        and menu_auth = #{type}
+                    <if test="authName != null">
+                        and menu_auth_name = #{authName}
                     </if>
                 </otherwise>
             </choose>

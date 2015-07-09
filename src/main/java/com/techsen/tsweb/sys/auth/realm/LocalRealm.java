@@ -1,5 +1,7 @@
 package com.techsen.tsweb.sys.auth.realm;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.shiro.SecurityUtils;
@@ -10,6 +12,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.stereotype.Component;
@@ -29,11 +32,13 @@ public class LocalRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo (
             PrincipalCollection principals) {
+        SimpleAuthorizationInfo sai = new SimpleAuthorizationInfo();
         User user = (User) SecurityUtils.getSubject().getSession().getAttribute(SysConst.LOGIN_USER);
-        for (UserRole userRole : user.getUserRoles()) {
-            Role role = userRole.getRole();
+        List<Role> roles = UserRole.getRolesFromUserRoleList(user.getUserRoles());
+        for (Role role : roles) {
+            sai.addRole(role.getName());
         }
-        return null;
+        return sai;
     }
 
     @Override

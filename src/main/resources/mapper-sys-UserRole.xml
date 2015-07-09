@@ -11,8 +11,8 @@
         <result property="updateDate" column="userrole_update_date"/>
         <result property="remark" column="userrole_remark"/>
         
-        <association property="user" column="userrole_user_id" javaType="User" select="com.techsen.tsweb.sys.dao.UserDao.get"/>
-        <association property="role" column="userrole_role_id" javaType="Role" select="com.techsen.tsweb.sys.dao.RoleDao.get"/>
+        <association property="user" resultMap="com.techsen.tsweb.sys.dao.UserDao.UserMap"/>
+        <association property="role" resultMap="com.techsen.tsweb.sys.dao.RoleDao.RoleMap"/>
     </resultMap>
 
     <sql id="UserRoleTable">sys_userrole_mstr</sql>
@@ -23,12 +23,24 @@
         userrole_update_by, userrole_update_date,
         userrole_remark
     </sql>
+    
+    <sql id="SelectUserRoleColumns">
+        <include refid="UserRoleColumns"/>,
+        <include refid="com.techsen.tsweb.sys.dao.UserDao.UserColumns"/>,
+        <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleColumns"/>
+    </sql>
 
     <sql id="UserRoleProperties">
         #{id}, #{user.id}, #{role.id},
         #{createBy}, #{createDate},
         #{updateBy}, #{updateDate},
         #{remark}
+    </sql>
+    
+    <sql id="SelectUserRoleProperties">
+        <include refid="UserRoleProperties"/>,
+        <include refid="com.techsen.tsweb.sys.dao.UserDao.UserProperties"/>,
+        <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleProperties"/>
     </sql>
     
     <sql id="UserRoleUpdateMap">
@@ -79,31 +91,41 @@
     </update>
 
     <select id="get" parameterType="string" resultMap="UserRoleMap">
-        select <include refid="UserRoleColumns"/>
+        select <include refid="SelectUserRoleColumns"/>
         from <include refid="UserRoleTable"/>
+        join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on userrole_user_id = user_id
+        join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on userrole_role_id = role_id
         <where> userrole_id = #{id} </where>
     </select>
     
     <select id="getByEntity" parameterType="UserRole" resultMap="UserRoleMap">
-        select <include refid="UserRoleColumns"/>
+        select <include refid="SelectUserRoleColumns"/>
         from <include refid="UserRoleTable"/>
+        join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on userrole_user_id = user_id
+        join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on userrole_role_id = role_id
         <include refid="UserRoleWhereCondition"/>
     </select>
     
     <select id="findAll" resultMap="UserRoleMap">
-        select <include refid="UserRoleColumns"/>
+        select <include refid="SelectUserRoleColumns"/>
         from <include refid="UserRoleTable"/>
+        join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on userrole_user_id = user_id
+        join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on userrole_role_id = role_id
     </select>
     
     <select id="getUserRolesByUserId" parameterType="string" resultMap="UserRoleMap">
-        select <include refid="UserRoleColumns"/>
+        select <include refid="SelectUserRoleColumns"/>
         from <include refid="UserRoleTable"/>
+        join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on userrole_user_id = user_id
+        join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on userrole_role_id = role_id
         <where> userrole_user_id = #{userId} </where>
     </select>
     
     <select id="getUserRolesByRoleId" parameterType="string" resultMap="UserRoleMap">
-        select <include refid="UserRoleColumns"/>
+        select <include refid="SelectUserRoleColumns"/>
         from <include refid="UserRoleTable"/>
+        join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on userrole_user_id = user_id
+        join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on userrole_role_id = role_id
         <where> userrole_role_id = #{roleId} </where>
     </select>
 </mapper>
