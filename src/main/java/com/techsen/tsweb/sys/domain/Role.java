@@ -19,7 +19,7 @@ public class Role extends BaseEntity<Role> implements Principal {
     
     @Override
     public PrincipalType getPrincipalType() {
-        return PrincipalType.Role;
+        return PrincipalType.role;
     }
 
     @Override

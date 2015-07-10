@@ -28,7 +28,7 @@ public class AuthDaoTest {
     
     @Test
     public void testGetByEntity() {
-        List<Auth> auths = this.authDao.getListByEntity(new Auth().setPrincipalType(PrincipalType.Role).setPrincipalId("R01"));
+        List<Auth> auths = this.authDao.getListByEntity(new Auth().setPrincipalType(PrincipalType.role).setPrincipalId("R01"));
         for (Auth auth : auths) {
             System.out.println(auth.getId() + ":" + auth.getPrincipalType() + ":" + auth.getPrincipalId());
         }
@@ -45,14 +45,14 @@ public class AuthDaoTest {
     @Test
     public void testAddUpdateDelete() {
         Auth auth = new Auth().setId("Atest")
-                .setResourceType(ResourceType.Menu)
+                .setResourceType(ResourceType.menu)
                 .setResourceGroup("test")
                 .setCode(0xff)
-                .setPrincipalType(PrincipalType.User)
+                .setPrincipalType(PrincipalType.user)
                 .setPrincipalId("U01");
         this.authDao.add(auth);
         
-        auth.setPrincipalType(PrincipalType.Role).setPrincipalId("R01");
+        auth.setPrincipalType(PrincipalType.role).setPrincipalId("R01");
         this.authDao.update(auth);
         
         this.authDao.delete(auth);

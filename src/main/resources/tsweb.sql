@@ -131,28 +131,28 @@ create table sys_auth_det (
     primary key(auth_id),
     unique key(auth_principal_type, auth_principal_id, auth_resource_type, auth_resource_group, auth_code)
 ) comment '授权表';
-insert into sys_auth_det values ('A01', 'Role', 'R01', 'Menu', 'root', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A02', 'Role', 'R01', 'Menu', 'tsweb', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A03', 'Role', 'R01', 'Menu', 'module', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A04', 'Role', 'R01', 'Menu', 'sys', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A05', 'Role', 'R01', 'Menu', 'qareport', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A06', 'Role', 'R01', 'Menu', 'detail', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A07', 'Role', 'R01', 'Menu', 'master', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A01', 'role', 'R01', 'menu', 'root', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A02', 'role', 'R01', 'menu', 'tsweb', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A03', 'role', 'R01', 'menu', 'module', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A04', 'role', 'R01', 'menu', 'sys', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A05', 'role', 'R01', 'menu', 'qareport', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A06', 'role', 'R01', 'menu', 'detail', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A07', 'role', 'R01', 'menu', 'master', 0x7fffffff, '', null, '', null, '');
 
-insert into sys_auth_det values ('A08', 'Role', 'R02', 'Menu', 'root', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A09', 'Role', 'R02', 'Menu', 'tsweb', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A10', 'Role', 'R02', 'Menu', 'module', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A11', 'Role', 'R02', 'Menu', 'sys', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A12', 'Role', 'R02', 'Menu', 'qareport', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A13', 'Role', 'R02', 'Menu', 'detail', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A14', 'Role', 'R02', 'Menu', 'master', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A08', 'role', 'R02', 'menu', 'root', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A09', 'role', 'R02', 'menu', 'tsweb', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A10', 'role', 'R02', 'menu', 'module', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A11', 'role', 'R02', 'menu', 'sys', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A12', 'role', 'R02', 'menu', 'qareport', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A13', 'role', 'R02', 'menu', 'detail', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A14', 'role', 'R02', 'menu', 'master', 0x7fffffff, '', null, '', null, '');
 
-insert into sys_auth_det values ('A15', 'Role', 'R03', 'Menu', 'root', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A16', 'Role', 'R03', 'Menu', 'tsweb', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A17', 'Role', 'R03', 'Menu', 'module', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A18', 'Role', 'R03', 'Menu', 'sys', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A19', 'Role', 'R03', 'Menu', 'qareport', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A20', 'Role', 'R03', 'Menu', 'detail', 0x7fffffff, '', null, '', null, '');
-insert into sys_auth_det values ('A21', 'Role', 'R03', 'Menu', 'master', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A15', 'role', 'R03', 'menu', 'root', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A16', 'role', 'R03', 'menu', 'tsweb', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A17', 'role', 'R03', 'menu', 'module', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A18', 'role', 'R03', 'menu', 'sys', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A19', 'role', 'R03', 'menu', 'qareport', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A20', 'role', 'R03', 'menu', 'detail', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A21', 'role', 'R03', 'menu', 'master', 0x7fffffff, '', null, '', null, '');
 
-insert into sys_auth_det values ('A22', 'User', 'U01', 'Menu', 'sys', 0x7fffffff, '', null, '', null, '');
+insert into sys_auth_det values ('A22', 'user', 'U01', 'menu', 'sys', 0x7fffffff, '', null, '', null, '');

@@ -119,20 +119,20 @@
     <select id="getAuthsByUserId" parameterType="string" resultMap="AuthMap">
         select <include refid="AuthColumns"/>
         from <include refid="AuthTable"/>
-        <where> auth_principal_type = 'User' and auth_principal_id = #{userId} </where>
+        <where> auth_principal_type = 'user' and auth_principal_id = #{userId} </where>
     </select>
     
     <select id="getAuthsByRoleId" parameterType="string" resultMap="AuthMap">
         select <include refid="AuthColumns"/>
         from <include refid="AuthTable"/>
-        <where> auth_principal_type = 'Role' and auth_principal_id = #{roleId} </where>
+        <where> auth_principal_type = 'role' and auth_principal_id = #{roleId} </where>
     </select>
     
     <select id="getAuthsByRoleName" parameterType="string" resultMap="AuthMap">
         select <include refid="AuthColumns"/>
         from <include refid="AuthTable"/>
         join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on auth_principal_id = role_id
-        <where> auth_principal_type = 'Role' and role_name = #{roleName} </where>
+        <where> auth_principal_type = 'role' and role_name = #{roleName} </where>
     </select>
     
 </mapper>

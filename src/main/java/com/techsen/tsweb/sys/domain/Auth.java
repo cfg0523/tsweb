@@ -19,9 +19,10 @@ public class Auth extends BaseEntity<Auth> {
      * 转换为二进制位权限对象
      */
     public BinaryPermission binaryPermission() {
-        return new BinaryPermission(this.resourceGroup, this.code);
+        return new BinaryPermission(this.resourceType.toString(),
+                this.resourceGroup, this.code);
     }
-    
+
     public PrincipalType getPrincipalType() {
         return principalType;
     }

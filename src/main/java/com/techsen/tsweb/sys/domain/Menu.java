@@ -1,5 +1,7 @@
 package com.techsen.tsweb.sys.domain;
 
+import static com.techsen.tsweb.core.util.ExceptionUtil.throwRuntimeException;
+
 import java.util.List;
 
 import com.techsen.tsweb.core.domain.BaseEntity;
@@ -16,27 +18,36 @@ public class Menu extends BaseEntity<Menu> implements Resource {
     private String path;
     private String resourceGroup;
     private int resourceIndex;
-
+    
     private Menu parent;
     private List<Menu> subMenus;
 
     /**
+     * 根据resourceIndex计算出授权码
+     */
+    @Override
+    public int getAuthCode() {
+        return 1 << this.resourceIndex;
+    }
+    
+    /**
      * 转换为二进制位权限对象
      */
     public BinaryPermission binaryPermission() {
-        return new BinaryPermission(this.resourceGroup, 1 << this.resourceIndex);
+        return new BinaryPermission(this.getResourceType().toString(),
+                this.resourceGroup, this.getAuthCode());
     }
 
     @Override
     public ResourceType getResourceType() {
-        return ResourceType.Menu;
+        return ResourceType.menu;
     }
-    
+
     @Override
     public String getResourceGroup() {
         return this.resourceGroup;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -64,22 +75,24 @@ public class Menu extends BaseEntity<Menu> implements Resource {
         return this;
     }
 
-    /*@Override
-    public String getResourceGroup() {
-        return this.resourceGroup;
-    }*/
+    /*
+     * @Override public String getResourceGroup() { return this.resourceGroup; }
+     */
 
     public Menu setResourceGroup(String authGroup) {
         this.resourceGroup = authGroup;
         return this;
     }
 
-    public int getAuthIndex() {
+    public int getResourceIndex() {
         return resourceIndex;
     }
 
-    public Menu setAuthIndex(int authIndex) {
-        this.resourceIndex = authIndex;
+    public Menu setResourceIndex(int resourceIndex) {
+        if (resourceIndex < 0 || resourceIndex > 30) {
+            throwRuntimeException("resourceIndex的值必须在0 ~ 30之间");
+        }
+        this.resourceIndex = resourceIndex;
         return this;
     }
 

@@ -17,7 +17,7 @@ public class User extends BaseEntity<User> implements Principal {
 
     @Override
     public PrincipalType getPrincipalType() {
-        return PrincipalType.User;
+        return PrincipalType.user;
     }
 
     @Override
