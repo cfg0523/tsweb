@@ -29,7 +29,7 @@ public class ModuleInterceptor extends HandlerInterceptorAdapter {
             modelAndView.getModel().put("moduleMenu", moduleMenu);
         }
         
-        Menu brandMenu = this.menuService.getOneByEntity(new Menu().setAuthGroup("root"));
+        Menu brandMenu = this.menuService.getOneByEntity(new Menu().setResourceGroup("root"));
         modelAndView.getModel().put("brandMenu", brandMenu);
         
         super.postHandle(request, response, handler, modelAndView);

@@ -7,8 +7,8 @@
         <result property="name" column="menu_name"/>
         <result property="label" column="menu_label"/>
         <result property="path" column="menu_path"/>
-        <result property="authGroup" column="menu_auth_group"/>
-        <result property="authIndex" column="menu_auth_index"/>
+        <result property="resourceGroup" column="menu_resource_group"/>
+        <result property="resourceIndex" column="menu_resource_index"/>
         
         <result property="createBy" column="menu_create_by"/>
         <result property="createDate" column="menu_create_date"/>
@@ -24,7 +24,7 @@
     
     <sql id="MenuColumns">
         menu_id, menu_name, menu_label, menu_path,
-        menu_auth_group, menu_auth_index, menu_parent_id,
+        menu_resource_group, menu_resource_index, menu_parent_id,
         menu_create_by, menu_create_date,
         menu_update_by, menu_update_date,
         menu_remark
@@ -32,7 +32,7 @@
 
     <sql id="MenuProperties">
         #{id}, #{name}, #{label}, #{path},
-        #{authGroup}, #{authIndex}, #{parent.id},
+        #{resourceGroup}, #{resourceIndex}, #{parent.id},
         #{createBy}, #{createDate},
         #{updateBy}, #{updateDate},
         #{remark}
@@ -42,8 +42,8 @@
         menu_name = #{name},
         menu_label = #{label},
         menu_path = #{path},
-        menu_auth_group = #{authGroup},
-        menu_auth_index = #{authIndex},
+        menu_resource_group = #{resourceGroup},
+        menu_resource_index = #{resourceIndex},
         menu_parent_id = #{parent.id},
         <!-- menu_create_by = #{createBy}, -->
         <!-- menu_create_date = #{createDate}, -->
@@ -65,11 +65,14 @@
                     <if test="label != null">
                         and menu_label = #{label}
                     </if>
-                    <if test="authGroup != null">
-                        and menu_auth_group = #{authGroup}
+                    <if test="path != null">
+                        and menu_path = #{path}
                     </if>
-                    <if test="authIndex gt 0">
-                        and menu_auth_index = #{authIndex}
+                    <if test="resourceGroup != null">
+                        and menu_resource_group = #{resourceGroup}
+                    </if>
+                    <if test="resourceIndex gt 0">
+                        and menu_resource_index = #{resourceIndex}
                     </if>
                 </otherwise>
             </choose>

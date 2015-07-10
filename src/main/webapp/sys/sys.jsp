@@ -36,8 +36,8 @@
                     programmer
                 </shiro:hasRole>
                 <br/>
-                <shiro:hasPermission name="sys:user">
-                    sys:user
+                <shiro:hasPermission name="sys:1">
+                    sys:1
                 </shiro:hasPermission>
                 <br/>
                 <shiro:hasPermission name="sys:5">

@@ -4,42 +4,41 @@
 <mapper namespace="com.techsen.tsweb.sys.dao.AuthDao">
     <resultMap type="Auth" id="AuthMap">
         <id property="id" column="auth_id"/>
-        <result property="group" column="auth_group"/>
+        <result property="principalType" column="auth_principal_type"/>
+        <result property="principalId" column="auth_principal_id"/>
+        <result property="resourceType" column="auth_resource_type"/>
+        <result property="resourceGroup" column="auth_resource_group"/>
         <result property="code" column="auth_code"/>
         <result property="createBy" column="auth_create_by"/>
         <result property="createDate" column="auth_create_date"/>
         <result property="updateBy" column="auth_update_by"/>
         <result property="updateDate" column="auth_update_date"/>
         <result property="remark" column="auth_remark"/>
-        
-        <association property="principal" javaType="com.techsen.tsweb.sys.auth.Principal">
-            <discriminator javaType="PrincipalType" column="auth_principal_type">
-                <case value="User" resultMap="com.techsen.tsweb.sys.dao.UserDao.UserMap"/>
-                <case value="Role" resultMap="com.techsen.tsweb.sys.dao.RoleDao.RoleMap"/>
-            </discriminator>
-        </association>
     </resultMap>
 
     <sql id="AuthTable">sys_auth_det</sql>
     
     <sql id="AuthColumns">
-        auth_id, auth_principal_type, auth_principal_id, auth_group, auth_code,
+        auth_id, auth_principal_type, auth_principal_id,
+        auth_resource_type, auth_resource_group, auth_code,
         auth_create_by, auth_create_date,
         auth_update_by, auth_update_date,
         auth_remark
     </sql>
 
     <sql id="AuthProperties">
-        #{id}, #{principal.principalType}, #{principal.principalId}, #{group}, #{code},
+        #{id}, #{principalType}, #{principalId},
+        #{resourceType}, #{resourceGroup}, #{code},
         #{createBy}, #{createDate},
         #{updateBy}, #{updateDate},
         #{remark}
     </sql>
     
     <sql id="AuthUpdateMap">
-        auth_principal_type = #{principal.principalType},
-        auth_principal_id = #{principal.principalId},
-        auth_group = #{group},
+        auth_principal_type = #{principalType},
+        auth_principal_id = #{principalId},
+        auth_resource_type = #{resourceType},
+        auth_resource_group = #{resourceGroup},
         auth_code = #{code},
         <!-- auth_create_by = #{createBy}, -->
         <!-- auth_create_date = #{createDate}, -->
@@ -55,16 +54,17 @@
                     auth_id = #{id}
                 </when>
                 <otherwise>
-                    <if test="principal != null">
-                        <if test="principal.principalType != null">
-                            and auth_principal_type = #{principal.principalType}
-                        </if>
-                        <if test="principal.principalId != null">
-                            and auth_principal_id = #{principal.principalId}
-                        </if>
+                    <if test="principalType != null">
+                        and auth_principal_type = #{principalType}
                     </if>
-                    <if test="group != null">
-                        and auth_group = #{group}
+                    <if test="principalId != null">
+                        and auth_principal_id = #{principalId}
+                    </if>
+                    <if test="resourceType != null">
+                        and auth_resource_type = #{resourceType}
+                    </if>
+                    <if test="resourceGroup != null">
+                        and auth_resource_group = #{resourceGroup}
                     </if>
                     <if test="code gt 0">
                         and auth_code = #{code}
@@ -94,89 +94,45 @@
     </update>
 
     <select id="get" parameterType="string" resultMap="AuthMap">
-        select
-            <include refid="AuthColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.UserDao.UserColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleColumns"/>
-        from
-            <include refid="AuthTable"/>
-            left join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on auth_principal_id = user_id
-            left join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on auth_principal_id = role_id
+        select <include refid="AuthColumns"/>
+        from <include refid="AuthTable"/>
         <where> auth_id = #{id} </where>
     </select>
     
     <select id="getOneByEntity" parameterType="Auth" resultMap="AuthMap">
-        select
-            <include refid="AuthColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.UserDao.UserColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleColumns"/>
-        from
-            <include refid="AuthTable"/>
-            left join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on auth_principal_id = user_id
-            left join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on auth_principal_id = role_id
+        select <include refid="AuthColumns"/>
+        from <include refid="AuthTable"/>
         <include refid="AuthWhereCondition"/>
     </select>
     
     <select id="getListByEntity" parameterType="Auth" resultMap="AuthMap">
-        select
-            <include refid="AuthColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.UserDao.UserColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleColumns"/>
-        from
-            <include refid="AuthTable"/>
-            left join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on auth_principal_id = user_id
-            left join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on auth_principal_id = role_id
+        select <include refid="AuthColumns"/>
+        from <include refid="AuthTable"/>
         <include refid="AuthWhereCondition"/>
     </select>
     
     <select id="findAll" resultMap="AuthMap">
-        select
-            <include refid="AuthColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.UserDao.UserColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleColumns"/>
-        from
-            <include refid="AuthTable"/>
-            left join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on auth_principal_id = user_id
-            left join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on auth_principal_id = role_id
+        select <include refid="AuthColumns"/>
+        from <include refid="AuthTable"/>
     </select>
     
     <select id="getAuthsByUserId" parameterType="string" resultMap="AuthMap">
-        select
-            <include refid="AuthColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.UserDao.UserColumns"/>
-        from
-            <include refid="AuthTable"/>
-            left join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on auth_principal_id = user_id
-        <where>
-            auth_principal_type = 'User'
-            and auth_principal_id = #{userId}
-        </where>
+        select <include refid="AuthColumns"/>
+        from <include refid="AuthTable"/>
+        <where> auth_principal_type = 'User' and auth_principal_id = #{userId} </where>
     </select>
     
     <select id="getAuthsByRoleId" parameterType="string" resultMap="AuthMap">
-        select
-            <include refid="AuthColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleColumns"/>
-        from
-            <include refid="AuthTable"/>
-            left join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on auth_principal_id = role_id
-        <where>
-            auth_principal_type = 'Role'
-            and auth_principal_id = #{roleId}
-        </where>
+        select <include refid="AuthColumns"/>
+        from <include refid="AuthTable"/>
+        <where> auth_principal_type = 'Role' and auth_principal_id = #{roleId} </where>
     </select>
     
     <select id="getAuthsByRoleName" parameterType="string" resultMap="AuthMap">
-        select
-            <include refid="AuthColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleColumns"/>
-        from
-            <include refid="AuthTable"/>
-            left join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on auth_principal_id = role_id
-        <where>
-            auth_principal_type = 'Role'
-            and role_name = #{roleName}
-        </where>
+        select <include refid="AuthColumns"/>
+        from <include refid="AuthTable"/>
+        join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on auth_principal_id = role_id
+        <where> auth_principal_type = 'Role' and role_name = #{roleName} </where>
     </select>
     
 </mapper>

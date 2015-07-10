@@ -2,38 +2,59 @@ package com.techsen.tsweb.sys.domain;
 
 import com.techsen.tsweb.core.domain.BaseEntity;
 import com.techsen.tsweb.sys.auth.BinaryPermission;
-import com.techsen.tsweb.sys.auth.Principal;
+import com.techsen.tsweb.sys.auth.PrincipalType;
+import com.techsen.tsweb.sys.auth.ResourceType;
 
 public class Auth extends BaseEntity<Auth> {
 
     private static final long serialVersionUID = 1651997840821737066L;
 
-    private Principal principal;
-    private String group;
+    private PrincipalType principalType;
+    private String principalId;
+    private ResourceType resourceType;
+    private String resourceGroup;
     private int code;
 
     /**
      * 转换为二进制位权限对象
      */
     public BinaryPermission binaryPermission() {
-        return new BinaryPermission(this.group, this.code);
+        return new BinaryPermission(this.resourceGroup, this.code);
     }
     
-    public Principal getPrincipal() {
-        return principal;
+    public PrincipalType getPrincipalType() {
+        return principalType;
     }
 
-    public Auth setPrincipal(Principal principal) {
-        this.principal = principal;
+    public Auth setPrincipalType(PrincipalType principalType) {
+        this.principalType = principalType;
         return this;
     }
 
-    public String getGroup() {
-        return group;
+    public String getPrincipalId() {
+        return principalId;
     }
 
-    public Auth setGroup(String group) {
-        this.group = group;
+    public Auth setPrincipalId(String principalId) {
+        this.principalId = principalId;
+        return this;
+    }
+
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    public Auth setResourceType(ResourceType resourceType) {
+        this.resourceType = resourceType;
+        return this;
+    }
+
+    public String getResourceGroup() {
+        return resourceGroup;
+    }
+
+    public Auth setResourceGroup(String resourceGroup) {
+        this.resourceGroup = resourceGroup;
         return this;
     }
 

@@ -14,8 +14,8 @@ public class Menu extends BaseEntity<Menu> implements Resource {
     private String name;
     private String label;
     private String path;
-    private String authGroup;
-    private int authIndex;
+    private String resourceGroup;
+    private int resourceIndex;
 
     private Menu parent;
     private List<Menu> subMenus;
@@ -24,17 +24,17 @@ public class Menu extends BaseEntity<Menu> implements Resource {
      * 转换为二进制位权限对象
      */
     public BinaryPermission binaryPermission() {
-        return new BinaryPermission(this.authGroup, 1 << this.authIndex);
+        return new BinaryPermission(this.resourceGroup, 1 << this.resourceIndex);
     }
 
     @Override
     public ResourceType getResourceType() {
-        return ResourceType.menu;
+        return ResourceType.Menu;
     }
-
+    
     @Override
-    public String getResourceId() {
-        return this.id;
+    public String getResourceGroup() {
+        return this.resourceGroup;
     }
     
     public String getName() {
@@ -64,21 +64,22 @@ public class Menu extends BaseEntity<Menu> implements Resource {
         return this;
     }
 
-    public String getAuthGroup() {
-        return authGroup;
-    }
+    /*@Override
+    public String getResourceGroup() {
+        return this.resourceGroup;
+    }*/
 
-    public Menu setAuthGroup(String authGroup) {
-        this.authGroup = authGroup;
+    public Menu setResourceGroup(String authGroup) {
+        this.resourceGroup = authGroup;
         return this;
     }
 
     public int getAuthIndex() {
-        return authIndex;
+        return resourceIndex;
     }
 
     public Menu setAuthIndex(int authIndex) {
-        this.authIndex = authIndex;
+        this.resourceIndex = authIndex;
         return this;
     }
 
