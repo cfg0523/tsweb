@@ -1,7 +1,5 @@
 package com.techsen.tsweb.sys.domain;
 
-import java.util.List;
-
 import com.techsen.tsweb.core.domain.BaseEntity;
 import com.techsen.tsweb.sys.auth.Principal;
 import com.techsen.tsweb.sys.auth.PrincipalType;
@@ -15,7 +13,7 @@ public class User extends BaseEntity<User> implements Principal {
 
     private Menu indexMenu;
     
-    private List<UserRole> userRoles;
+    //private List<UserRole> userRoles;
 
     @Override
     public PrincipalType getPrincipalType() {
@@ -54,13 +52,13 @@ public class User extends BaseEntity<User> implements Principal {
         return this;
     }
 
-    public List<UserRole> getUserRoles() {
+    /*public List<UserRole> getUserRoles() {
         return userRoles;
     }
 
     public User setUserRoles(List<UserRole> userRoles) {
         this.userRoles = userRoles;
         return this;
-    }
+    }*/
 
 }

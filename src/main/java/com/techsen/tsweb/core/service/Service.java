@@ -29,7 +29,12 @@ public interface Service<T extends BaseEntity<T>> {
     /**
      * 根据给定条件查找一个Entity
      */
-    public T getByEntity(T entity);
+    public T getOneByEntity(T entity);
+    
+    /**
+     * 根据给定条件查找Entity集合
+     */
+    public List<T> getListByEntity(T entity);
     
     /**
      * 查询所有的Entity

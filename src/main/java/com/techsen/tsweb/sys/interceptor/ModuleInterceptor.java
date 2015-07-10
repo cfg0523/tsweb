@@ -25,16 +25,12 @@ public class ModuleInterceptor extends HandlerInterceptorAdapter {
         String[] strs = servletPath.split("/");
         if (strs.length >= 2) {
             String module = strs[1];
-            Menu moduleMenu = this.menuService.getByEntity(new Menu().setName(module));
+            Menu moduleMenu = this.menuService.getOneByEntity(new Menu().setName(module));
             modelAndView.getModel().put("moduleMenu", moduleMenu);
         }
         
-        Menu brandMenu = this.menuService.getByEntity(new Menu().setAuthGroup("root"));
+        Menu brandMenu = this.menuService.getOneByEntity(new Menu().setAuthGroup("root"));
         modelAndView.getModel().put("brandMenu", brandMenu);
-        
-        System.out.println("----------------------");
-        System.out.println(brandMenu);
-        System.out.println("----------------------");
         
         super.postHandle(request, response, handler, modelAndView);
     }

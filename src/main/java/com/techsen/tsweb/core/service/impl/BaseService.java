@@ -50,10 +50,18 @@ public abstract class BaseService<E extends BaseEntity<E>, T extends Dao<E>>
      * 根据给定条件查找一个Entity
      */
     @Override
-    public E getByEntity(E entity) {
+    public E getOneByEntity(E entity) {
         return this.dao.getOneByEntity(entity);
     }
 
+    /**
+     * 根据给定条件查找Entity集合
+     */
+    @Override
+    public List<E> getListByEntity(E entity) {
+        return this.dao.getListByEntity(entity);
+    }
+    
     /**
      * 查询所有的Entity
      */

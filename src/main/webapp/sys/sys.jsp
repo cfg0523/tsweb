@@ -31,7 +31,19 @@
             <div class="col-md-2">
                 <jsp:include page="/aside.jsp"/>
             </div>
-            <div class="col-md-10"></div>
+            <div class="col-md-10">
+                <shiro:hasRole name="programmer">
+                    programmer
+                </shiro:hasRole>
+                <br/>
+                <shiro:hasPermission name="sys::1">
+                    sys::1
+                </shiro:hasPermission>
+                <br/>
+                <shiro:hasPermission name="sys::5">
+                    sys::5
+                </shiro:hasPermission>
+            </div>
         </div>
 	</div>
 </body>

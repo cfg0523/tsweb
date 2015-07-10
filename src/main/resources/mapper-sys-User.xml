@@ -14,7 +14,9 @@
         <result property="remark" column="user_remark"/>
         
         <association property="indexMenu" column="user_index_menu" javaType="Menu" select="com.techsen.tsweb.sys.dao.MenuDao.get"/>
-        <collection property="userRoles" column="user_id" ofType="UserRole" select="com.techsen.tsweb.sys.dao.UserRoleDao.getUserRolesByUserId"/>
+        
+        <!-- 取消与用户的关联，是因为User对象将会保存在session中，如果保留关联对象，将会导致session的存储过多，对服务器压力较大 -->
+        <!-- <collection property="userRoles" column="user_id" ofType="UserRole" select="com.techsen.tsweb.sys.dao.UserRoleDao.getUserRolesByUserId"/> -->
     </resultMap>
 
     <sql id="UserTable">sys_user_mstr</sql>

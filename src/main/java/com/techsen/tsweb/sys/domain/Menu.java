@@ -3,6 +3,7 @@ package com.techsen.tsweb.sys.domain;
 import java.util.List;
 
 import com.techsen.tsweb.core.domain.BaseEntity;
+import com.techsen.tsweb.sys.auth.BinaryPermission;
 
 public class Menu extends BaseEntity<Menu> {
 
@@ -17,6 +18,13 @@ public class Menu extends BaseEntity<Menu> {
     private Menu parent;
     private List<Menu> subMenus;
 
+    /**
+     * 转换为二进制位权限对象
+     */
+    public BinaryPermission binaryPermission() {
+        return new BinaryPermission(this.authGroup, 1 << this.authIndex);
+    }
+    
     public String getName() {
         return name;
     }

@@ -1,6 +1,7 @@
 package com.techsen.tsweb.sys.domain;
 
 import com.techsen.tsweb.core.domain.BaseEntity;
+import com.techsen.tsweb.sys.auth.BinaryPermission;
 import com.techsen.tsweb.sys.auth.Principal;
 
 public class Auth extends BaseEntity<Auth> {
@@ -11,6 +12,13 @@ public class Auth extends BaseEntity<Auth> {
     private String group;
     private int code;
 
+    /**
+     * 转换为二进制位权限对象
+     */
+    public BinaryPermission binaryPermission() {
+        return new BinaryPermission(this.group, this.code);
+    }
+    
     public Principal getPrincipal() {
         return principal;
     }

@@ -13,8 +13,8 @@
     <!-- 配置Shiro的安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="localRealm" />
-        <!-- <property name="authorizer.permissionResolver" ref="binaryPermissionResolver"/>
-        <property name="authorizer.rolePermissionResolver" ref="binaryRolePermissionResolver"/> -->
+        <property name="authorizer.permissionResolver" ref="binaryPermissionResolver"/>
+        <property name="authorizer.rolePermissionResolver" ref="binaryRolePermissionResolver"/>
     </bean>
 
     <!-- 配置ShiroFilter -->

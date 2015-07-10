@@ -15,6 +15,8 @@ public class Role extends BaseEntity<Role> implements Principal {
     
     private List<UserRole> userRoles;
 
+    private List<Auth> auths;
+    
     @Override
     public PrincipalType getPrincipalType() {
         return PrincipalType.Role;
@@ -49,6 +51,15 @@ public class Role extends BaseEntity<Role> implements Principal {
 
     public Role setUserRoles(List<UserRole> userRoles) {
         this.userRoles = userRoles;
+        return this;
+    }
+
+    public List<Auth> getAuths() {
+        return auths;
+    }
+
+    public Role setAuths(List<Auth> auths) {
+        this.auths = auths;
         return this;
     }
 

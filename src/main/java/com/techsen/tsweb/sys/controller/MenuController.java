@@ -18,10 +18,6 @@ public class MenuController {
     @RequestMapping("/{module}")
     public String module(@PathVariable String module, Model model) {
         
-        System.out.println("--------------------");
-        System.out.println(module);
-        System.out.println("--------------------");
-        
         return module + "/" + module;
     }
     
