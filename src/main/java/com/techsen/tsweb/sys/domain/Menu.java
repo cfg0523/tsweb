@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.techsen.tsweb.core.domain.BaseEntity;
 import com.techsen.tsweb.sys.auth.BinaryPermission;
+import com.techsen.tsweb.sys.auth.Resource;
+import com.techsen.tsweb.sys.auth.ResourceType;
 
-public class Menu extends BaseEntity<Menu> {
+public class Menu extends BaseEntity<Menu> implements Resource {
 
     private static final long serialVersionUID = -7771118378089691104L;
 
@@ -23,6 +25,16 @@ public class Menu extends BaseEntity<Menu> {
      */
     public BinaryPermission binaryPermission() {
         return new BinaryPermission(this.authGroup, 1 << this.authIndex);
+    }
+
+    @Override
+    public ResourceType getResourceType() {
+        return ResourceType.menu;
+    }
+
+    @Override
+    public String getResourceId() {
+        return this.id;
     }
     
     public String getName() {

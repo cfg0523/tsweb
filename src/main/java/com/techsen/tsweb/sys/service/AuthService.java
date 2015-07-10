@@ -12,4 +12,14 @@ public interface AuthService extends Service<Auth> {
      */
     public List<Auth> getAuthsByUserId(String userId);
     
+    /**
+     * 根据角色ID获取Auth集合
+     */
+    public List<Auth> getAuthsByRoleId(String roleId);
+    
+    /**
+     * 根据角色名获取Auth集合
+     */
+    public List<Auth> getAuthsByRoleName(String roleName);
+    
 }

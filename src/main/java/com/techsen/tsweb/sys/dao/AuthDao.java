@@ -18,4 +18,10 @@ public interface AuthDao extends Dao<Auth> {
      * 根据用户ID获取Auth集合
      */
     List<Auth> getAuthsByUserId(String userId);
+    
+    /**
+     * 根据角色名获取Auth集合
+     */
+    public List<Auth> getAuthsByRoleName(String roleName);
+    
 }

@@ -36,12 +36,12 @@
                     programmer
                 </shiro:hasRole>
                 <br/>
-                <shiro:hasPermission name="sys::1">
-                    sys::1
+                <shiro:hasPermission name="sys:user">
+                    sys:user
                 </shiro:hasPermission>
                 <br/>
-                <shiro:hasPermission name="sys::5">
-                    sys::5
+                <shiro:hasPermission name="sys:5">
+                    sys:5
                 </shiro:hasPermission>
             </div>
         </div>

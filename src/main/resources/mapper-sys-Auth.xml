@@ -140,6 +140,19 @@
             left join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on auth_principal_id = role_id
     </select>
     
+    <select id="getAuthsByUserId" parameterType="string" resultMap="AuthMap">
+        select
+            <include refid="AuthColumns"/>,
+            <include refid="com.techsen.tsweb.sys.dao.UserDao.UserColumns"/>
+        from
+            <include refid="AuthTable"/>
+            left join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on auth_principal_id = user_id
+        <where>
+            auth_principal_type = 'User'
+            and auth_principal_id = #{userId}
+        </where>
+    </select>
+    
     <select id="getAuthsByRoleId" parameterType="string" resultMap="AuthMap">
         select
             <include refid="AuthColumns"/>,
@@ -153,16 +166,16 @@
         </where>
     </select>
     
-    <select id="getAuthsByUserId" parameterType="string" resultMap="AuthMap">
+    <select id="getAuthsByRoleName" parameterType="string" resultMap="AuthMap">
         select
             <include refid="AuthColumns"/>,
-            <include refid="com.techsen.tsweb.sys.dao.UserDao.UserColumns"/>
+            <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleColumns"/>
         from
             <include refid="AuthTable"/>
-            left join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on auth_principal_id = user_id
+            left join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on auth_principal_id = role_id
         <where>
-            auth_principal_type = 'User'
-            and auth_principal_id = #{userId}
+            auth_principal_type = 'Role'
+            and role_name = #{roleName}
         </where>
     </select>
     

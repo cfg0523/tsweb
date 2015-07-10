@@ -28,4 +28,20 @@ public class AuthServiceImpl extends BaseService<Auth, AuthDao> implements AuthS
         return this.dao.getAuthsByUserId(userId);
     }
 
+    /**
+     * 根据角色ID获取Auth集合
+     */
+    @Override
+    public List<Auth> getAuthsByRoleId(String roleId) {
+        return this.dao.getAuthsByRoleId(roleId);
+    }
+    
+    /**
+     * 根据角色名获取Auth集合
+     */
+    @Override
+    public List<Auth> getAuthsByRoleName(String roleName) {
+        return this.dao.getAuthsByRoleName(roleName);
+    }
+
 }
