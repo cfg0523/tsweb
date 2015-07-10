@@ -51,7 +51,7 @@ public abstract class BaseService<E extends BaseEntity<E>, T extends Dao<E>>
      */
     @Override
     public E getByEntity(E entity) {
-        return this.dao.getByEntity(entity);
+        return this.dao.getOneByEntity(entity);
     }
 
     /**

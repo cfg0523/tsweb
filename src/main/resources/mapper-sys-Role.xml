@@ -85,7 +85,13 @@
         <where> role_id = #{id} </where>
     </select>
     
-    <select id="getByEntity" parameterType="Role" resultMap="RoleMap">
+    <select id="getOneByEntity" parameterType="Role" resultMap="RoleMap">
+        select <include refid="RoleColumns"/>
+        from <include refid="RoleTable"/>
+        <include refid="RoleWhereCondition"/>
+    </select>
+    
+    <select id="getListByEntity" parameterType="Role" resultMap="RoleMap">
         select <include refid="RoleColumns"/>
         from <include refid="RoleTable"/>
         <include refid="RoleWhereCondition"/>

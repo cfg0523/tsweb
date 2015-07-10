@@ -24,7 +24,7 @@ public class UserRoleDaoTest {
     public void testGet() {
         UserRole userRole = this.userRoleDao.get("UR01");
         List<UserRole> userRoles = this.userRoleDao.findAll();
-        UserRole ur = this.userRoleDao.getByEntity(new UserRole().setUser(new User().setId("U01")).setRole(new Role().setId("R01")));
+        UserRole ur = this.userRoleDao.getOneByEntity(new UserRole().setUser(new User().setId("U01")).setRole(new Role().setId("R01")));
     }
     
 }

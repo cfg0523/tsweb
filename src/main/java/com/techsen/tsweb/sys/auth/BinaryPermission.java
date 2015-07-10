@@ -1,4 +1,4 @@
-package com.techsen.tsweb.sys.auth.realm;
+package com.techsen.tsweb.sys.auth;
 
 import static com.techsen.tsweb.core.util.Const.EMPTY_STRING;
 

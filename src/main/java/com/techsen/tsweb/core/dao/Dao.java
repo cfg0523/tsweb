@@ -32,7 +32,12 @@ public interface Dao<T extends BaseEntity<T>> {
     /**
      * 根据给定条件查找一个Entity
      */
-    T getByEntity(T entity);
+    T getOneByEntity(T entity);
+    
+    /**
+     * 根据给定条件查找Entity集合
+     */
+    List<T> getListByEntity(T entity);
     
     /**
      * 查询所有的Entity

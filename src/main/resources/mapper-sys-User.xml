@@ -90,7 +90,13 @@
         <where> user_id = #{id} </where>
     </select>
     
-    <select id="getByEntity" parameterType="User" resultMap="UserMap">
+    <select id="getOneByEntity" parameterType="User" resultMap="UserMap">
+        select <include refid="UserColumns"/>
+        from <include refid="UserTable"/>
+        <include refid="UserWhereCondition"/>
+    </select>
+    
+    <select id="getListByEntity" parameterType="User" resultMap="UserMap">
         select <include refid="UserColumns"/>
         from <include refid="UserTable"/>
         <include refid="UserWhereCondition"/>

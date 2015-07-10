@@ -101,7 +101,13 @@
         <where> menu_id = #{id} </where>
     </select>
     
-    <select id="getByEntity" parameterType="Menu" resultMap="MenuMap">
+    <select id="getOneByEntity" parameterType="Menu" resultMap="MenuMap">
+        select <include refid="MenuColumns"/>
+        from <include refid="MenuTable"/>
+        <include refid="MenuWhereCondition"/>
+    </select>
+    
+    <select id="getListByEntity" parameterType="Menu" resultMap="MenuMap">
         select <include refid="MenuColumns"/>
         from <include refid="MenuTable"/>
         <include refid="MenuWhereCondition"/>

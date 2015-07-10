@@ -98,7 +98,15 @@
         <where> userrole_id = #{id} </where>
     </select>
     
-    <select id="getByEntity" parameterType="UserRole" resultMap="UserRoleMap">
+    <select id="getOneByEntity" parameterType="UserRole" resultMap="UserRoleMap">
+        select <include refid="SelectUserRoleColumns"/>
+        from <include refid="UserRoleTable"/>
+        join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on userrole_user_id = user_id
+        join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on userrole_role_id = role_id
+        <include refid="UserRoleWhereCondition"/>
+    </select>
+    
+    <select id="getListByEntity" parameterType="UserRole" resultMap="UserRoleMap">
         select <include refid="SelectUserRoleColumns"/>
         from <include refid="UserRoleTable"/>
         join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on userrole_user_id = user_id

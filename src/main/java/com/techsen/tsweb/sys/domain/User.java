@@ -3,8 +3,10 @@ package com.techsen.tsweb.sys.domain;
 import java.util.List;
 
 import com.techsen.tsweb.core.domain.BaseEntity;
+import com.techsen.tsweb.sys.auth.Principal;
+import com.techsen.tsweb.sys.auth.PrincipalType;
 
-public class User extends BaseEntity<User> {
+public class User extends BaseEntity<User> implements Principal {
 
     private static final long serialVersionUID = -6378136187265089253L;
 
@@ -14,6 +16,16 @@ public class User extends BaseEntity<User> {
     private Menu indexMenu;
     
     private List<UserRole> userRoles;
+
+    @Override
+    public PrincipalType getPrincipalType() {
+        return PrincipalType.User;
+    }
+
+    @Override
+    public String getPrincipalId() {
+        return this.id;
+    }
 
     public String getUsername() {
         return username;

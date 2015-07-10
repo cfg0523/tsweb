@@ -1,4 +1,4 @@
-package com.techsen.tsweb.sys.auth.realm;
+package com.techsen.tsweb.sys.auth;
 
 import java.util.Collection;
 
