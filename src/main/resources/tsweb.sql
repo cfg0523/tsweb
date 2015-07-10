@@ -74,8 +74,8 @@ create table sys_menu_mstr (
     menu_name varchar(32) not null comment '菜单名称',
     menu_label varchar(32) comment '菜单描述',
     menu_path varchar(32) comment '菜单路径',
-    menu_type varchar(32) comment '菜单类型',
-    menu_auth_name varchar(32) comment '菜单权限标识名',
+    menu_auth_group varchar(32) comment '授权权限分组',
+    menu_auth_index int comment '授权权限组内索引',
     menu_parent_id varchar(32) comment '父级菜单ID',
     menu_create_by varchar(32) comment '创建人ID',
     menu_create_date datetime comment '创建时间',
@@ -83,30 +83,47 @@ create table sys_menu_mstr (
     menu_update_date datetime comment '修改时间',
     menu_remark varchar(256) comment '备注',
     primary key(menu_id),
-    unique key(menu_name)
+    unique key(menu_name),
+    unique key(menu_auth_group, menu_auth_index)
 ) comment '菜单表';
-insert into sys_menu_mstr values ('M00', '/', 'TSWEB', '/', 'BRAND', '*', null, '', null, '', null, '');
+insert into sys_menu_mstr values ('M00', 'tsweb', 'TSWEB', '/', 'root', 1, null, '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M01', 'sys', '系统管理', '/sys', 'MENU', 'sys', 'M00', '', null, '', null, '');
-insert into sys_menu_mstr values ('M02', 'qareport', 'QAReport', '/qareport', 'MENU', 'qareport', 'M00', '', null, '', null, '');
-insert into sys_menu_mstr values ('M03', 'module', '模块管理', '', 'MENU', 'module', 'M00', '', null, '', null, '');
+insert into sys_menu_mstr values ('M01', 'sys', '系统管理', '/sys', 'tsweb', 1, 'M00', '', null, '', null, '');
+insert into sys_menu_mstr values ('M02', 'qareport', 'QAReport', '/qareport', 'tsweb', 2, 'M00', '', null, '', null, '');
+insert into sys_menu_mstr values ('M03', 'module', '模块管理', '', 'tsweb', 3, 'M00', '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M04', 'csm', 'CSM', '/csm', 'MENU', 'csm', 'M03', '', null, '', null, '');
-insert into sys_menu_mstr values ('M05', 'ehr', 'EHR', '/ehr', 'MENU', 'ehr', 'M03', '', null, '', null, '');
+insert into sys_menu_mstr values ('M04', 'csm', 'CSM', '/csm', 'module', 1, 'M03', '', null, '', null, '');
+insert into sys_menu_mstr values ('M05', 'ehr', 'EHR', '/ehr', 'module', 2, 'M03', '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M06', 'user', '用户管理', '/sys/user', 'MENU', 'sys:user', 'M01', '', null, '', null, '');
-insert into sys_menu_mstr values ('M07', 'role', '角色管理', '/sys/role', 'MENU', 'sys:role', 'M01', '', null, '', null, '');
-insert into sys_menu_mstr values ('M08', 'menu', '菜单管理', '/sys/menu', 'MENU', 'sys:menu', 'M01', '', null, '', null, '');
+insert into sys_menu_mstr values ('M06', 'user', '用户管理', '/sys/user', 'sys', 1, 'M01', '', null, '', null, '');
+insert into sys_menu_mstr values ('M07', 'role', '角色管理', '/sys/role', 'sys', 2, 'M01', '', null, '', null, '');
+insert into sys_menu_mstr values ('M08', 'menu', '菜单管理', '/sys/menu', 'sys', 3, 'M01', '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M09', 'daily', 'Daily', '/qareport/daily', 'MENU', 'qareport:daily', 'M02', '', null, '', null, '');
-insert into sys_menu_mstr values ('M10', 'detail', 'Detail', '', 'MENU', 'qareport:detail', 'M02', '', null, '', null, '');
-insert into sys_menu_mstr values ('M11', 'master', 'Master', '', 'MENU', 'qareport:master', 'M02', '', null, '', null, '');
+insert into sys_menu_mstr values ('M09', 'daily', 'Daily', '/qareport/daily', 'qareport', 1, 'M02', '', null, '', null, '');
+insert into sys_menu_mstr values ('M10', 'detail', 'Detail', '', 'qareport', 2, 'M02', '', null, '', null, '');
+insert into sys_menu_mstr values ('M11', 'master', 'Master', '', 'qareport', 3, 'M02', '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M12', 'podetail', 'PO Detail', '/qareport/podetail', 'MENU', 'qareport:podetail', 'M10', '', null, '', null, '');
-insert into sys_menu_mstr values ('M13', 'aqldetail', 'AQL Detail', '/qareport/aqldetail', 'MENU', 'qareport:aqldetail', 'M10', '', null, '', null, '');
-insert into sys_menu_mstr values ('M14', 'dftdetail', 'DFT Detail', '/qareport/dftdetail', 'MENU', 'qareport:dftdetail', 'M10', '', null, '', null, '');
-insert into sys_menu_mstr values ('M15', 'pkgdetail', 'PKG Detail', '/qareport/pkgdetail', 'MENU', 'qareport:pkgdetail', 'M10', '', null, '', null, '');
-insert into sys_menu_mstr values ('M16', 'techdetail', 'TECH Detail', '/qareport/techdetail', 'MENU', 'qareport:techdetail', 'M10', '', null, '', null, '');
+insert into sys_menu_mstr values ('M12', 'podetail', 'PO Detail', '/qareport/podetail', 'detail', 1, 'M10', '', null, '', null, '');
+insert into sys_menu_mstr values ('M13', 'aqldetail', 'AQL Detail', '/qareport/aqldetail', 'detail', 2, 'M10', '', null, '', null, '');
+insert into sys_menu_mstr values ('M14', 'dftdetail', 'DFT Detail', '/qareport/dftdetail', 'detail', 3, 'M10', '', null, '', null, '');
+insert into sys_menu_mstr values ('M15', 'pkgdetail', 'PKG Detail', '/qareport/pkgdetail', 'detail', 4, 'M10', '', null, '', null, '');
+insert into sys_menu_mstr values ('M16', 'techdetail', 'TECH Detail', '/qareport/techdetail', 'detail', 5, 'M10', '', null, '', null, '');
 
-insert into sys_menu_mstr values ('M17', 'aqlmaster', 'AQL Master', '/qareport/aqlmaster', 'MENU', 'qareport:aqlmaster', 'M11', '', null, '', null, '');
-insert into sys_menu_mstr values ('M18', 'codemaster', 'Code Master', '/qareport/codemaster', 'MENU', 'qareport:codemaster', 'M11', '', null, '', null, '');
+insert into sys_menu_mstr values ('M17', 'aqlmaster', 'AQL Master', '/qareport/aqlmaster', 'master', 1, 'M11', '', null, '', null, '');
+insert into sys_menu_mstr values ('M18', 'codemaster', 'Code Master', '/qareport/codemaster', 'master', 2, 'M11', '', null, '', null, '');
+
+/**
+ * sys_auth_det
+ */
+drop table if exists sys_auth_det;
+create table sys_auth_det (
+    auth_id varchar(32) comment '授权ID',
+    auth_group varchar(32) not null comment '授权权限组名',
+    auth_code int comment '授权码',
+    auth_create_by varchar(32) comment '创建人ID',
+    auth_create_date datetime comment '创建时间',
+    auth_update_by varchar(32) comment '修改人ID',
+    auth_update_date datetime comment '修改时间',
+    auth_remark varchar(256) comment '备注',
+    primary key(auth_group)
+) comment '授权表';

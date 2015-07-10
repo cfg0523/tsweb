@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.techsen.tsweb.sys.domain.Menu;
-import com.techsen.tsweb.sys.domain.MenuType;
 import com.techsen.tsweb.sys.service.MenuService;
 
 public class ModuleInterceptor extends HandlerInterceptorAdapter {
@@ -30,8 +29,12 @@ public class ModuleInterceptor extends HandlerInterceptorAdapter {
             modelAndView.getModel().put("moduleMenu", moduleMenu);
         }
         
-        Menu brandMenu = this.menuService.getByEntity(new Menu().setType(MenuType.BRAND));
+        Menu brandMenu = this.menuService.getByEntity(new Menu().setAuthGroup("root"));
         modelAndView.getModel().put("brandMenu", brandMenu);
+        
+        System.out.println("----------------------");
+        System.out.println(brandMenu);
+        System.out.println("----------------------");
         
         super.postHandle(request, response, handler, modelAndView);
     }
