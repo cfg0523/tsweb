@@ -46,7 +46,7 @@
         <aspectjweaver.version>1.8.5</aspectjweaver.version>
         <aspectjrt.version>1.8.5</aspectjrt.version>
 
-        <sitemesh.version>3.0.0</sitemesh.version>
+        <sitemesh.version>3.0.1</sitemesh.version>
         <jackson.version>2.2.3</jackson.version>
     </properties>
 
