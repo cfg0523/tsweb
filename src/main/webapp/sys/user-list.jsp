@@ -31,7 +31,9 @@
             <div class="col-md-2">
                 <jsp:include page="/aside.jsp"/>
             </div>
-            <div class="col-md-10"></div>
+            <div class="col-md-10">
+                ${moduleMenu.subMenus.size()}
+            </div>
         </div>
 	</div>
 </body>

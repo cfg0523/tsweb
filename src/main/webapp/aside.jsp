@@ -14,14 +14,14 @@
                             </div>
                             <ul class="nav nav-list collapse" id="collapse-menu-${asideMenu.name}">
                                 <c:forEach items="${asideMenu.subMenus}" var="asideMenuItem">
-                                    <li><a target="pagecontent" href="<c:url value="${asideMenuItem.path}"/>">${asideMenuItem.label}</a></li>
+                                    <li><a href="<c:url value="${asideMenuItem.path}"/>">${asideMenuItem.label}</a></li>
                                 </c:forEach>
                             </ul>
                         </li>
                     </c:when>
                     <c:otherwise>
                         <li class="list-group-item">
-                            <a target="pagecontent" href="<c:url value="${asideMenu.path}"/>">${asideMenu.label}</a>
+                            <a href="<c:url value="${asideMenu.path}"/>">${asideMenu.label}</a>
                         </li>
                     </c:otherwise>
                 </c:choose>
