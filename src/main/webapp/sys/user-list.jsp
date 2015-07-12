@@ -19,6 +19,14 @@
     }
 </style>
 
+<script type="text/javascript">
+$(function(){
+	$(".nav-tabs a").on('click', function(e){
+		$(this).tab('show');
+	});
+});
+</script>
+
 <title>TSWEB</title>
 </head>
 <body>
@@ -32,7 +40,61 @@
                 <jsp:include page="/aside.jsp"/>
             </div>
             <div class="col-md-10">
-                ${moduleMenu.subMenus.size()}
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#user-list">用户列表</a></li>
+                    <li><a href="#user-add">添加用户</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="user-list">
+                        <div class="panel panel-default" style="border-top:0; border-top-left-radius:0; border-top-right-radius:0;">
+                            <table class="table table-hover table-responsive table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>用户ID</th>
+                                        <th>用户名</th>
+                                        <th>首页</th>
+                                        <th>选择</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${users}" var="user">
+                                    <tr>
+                                        <td>${user.id}</td>
+                                        <td>${user.username}</td>
+                                        <td>${user.indexMenu.path}</td>
+                                        <td><input type="checkbox"/></td>
+                                    </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="user-add">
+                        <div class="panel panel-default" style="border-top:0; border-top-left-radius:0; border-top-right-radius:0;">
+                            <div class="panel-body">
+	                            <form action="#" class="form-horizontal">
+	                                <div class="form-group">
+	                                    <label class="col-md-1 control-label" for="username">用户名</label>
+	                                    <div class="col-md-5">
+	                                        <input type="text" class="form-control" name="username" id="username"/>
+	                                    </div>
+	                                </div>
+	                                <div class="form-group">
+                                        <label class="col-md-1 control-label" for="indexMenu">首页</label>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" name="indexMenu" id="indexMenu"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-1 col-md-5">
+                                            <input type="submit" class="btn btn-primary" name="submit" value="保存"/>
+                                        </div>
+                                    </div>
+	                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 	</div>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="include.jsp"%>
-<c:if test="${not empty module}">
+<c:if test="${not empty moduleMenu}">
     <div class="panel panel-default">
         <div class="panel-heading">${moduleMenu.label}</div>
         <ul class="list-group">

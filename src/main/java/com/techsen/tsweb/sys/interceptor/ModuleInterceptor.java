@@ -22,18 +22,10 @@ public class ModuleInterceptor extends HandlerInterceptorAdapter {
         
         String servletPath = request.getServletPath();
         
-        System.out.println("------------------");
-        System.out.println(servletPath);
-        System.out.println("------------------");
-        
         String[] strs = servletPath.split("/");
         if (strs.length >= 2) {
             String module = strs[1];
             Menu moduleMenu = this.menuService.getOneByEntity(new Menu().setName(module));
-            System.out.println("--------------------");
-            System.out.println("module: " + module);
-            System.out.println("moduleMenu: " + moduleMenu.getName());
-            System.out.println("--------------------");
             modelAndView.getModel().put("moduleMenu", moduleMenu);
         }
         
