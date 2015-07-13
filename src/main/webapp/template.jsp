@@ -9,15 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/bootstrap/css/bootstrap.min.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/tsweb.css"/>"/>
+
 <script type="text/javascript" src="<c:url value="/static/js/jquery.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.form.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/bootstrap/js/bootstrap.min.js"/>"></script>
-
-<style type="text/css">
-    #page-body {
-        margin-top: 70px;
-    }
-</style>
 
 <title>TSWEB</title>
 </head>

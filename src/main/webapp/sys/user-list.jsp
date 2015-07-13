@@ -9,43 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/bootstrap/css/bootstrap.min.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/tsweb.css"/>"/>
+
 <script type="text/javascript" src="<c:url value="/static/js/jquery.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.form.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/bootstrap/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/tsweb.js"/>"></script>
-
-<style type="text/css">
-    #page-body {
-        margin-top: 70px;
-    }
-    
-    .tab-pane .panel {
-        border-top:0;
-        border-top-left-radius:0;
-        border-top-right-radius:0;
-    }
-    
-    .nav-tabs .close {
-        margin-left: .8em;
-        font-size: 1em;
-    }
-    
-    /*---------------------*/
-    .query-group [class*="col-md-"] {
-        margin: 0;
-        padding: 0;
-    }
-    
-    .query-group [class*="col-md-"] .form-control {
-        border-radius: 0;
-        border-right: 0;
-    }
-    
-    .query-group [class*="col-md-"]:last .form-control {
-        border-right: 1px solid #ccc;
-    }
-    /*---------------------*/
-</style>
 
 <script type="text/javascript">
 $(function(){
@@ -80,79 +49,6 @@ $(function(){
                     <div class="tab-pane active" id="user-list">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <div class="col-md-6">
-                                    <form action="#" method="post">
-                                        <div class="query-group">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <select class="form-control">
-                                                        <option>And</option>
-                                                        <option>Or</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <select class="form-control">
-                                                        <option></option>
-                                                        <option>用户名</option>
-                                                        <option>密码</option>
-                                                        <option>首页</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <select class="form-control">
-                                                        <option>=</option>
-                                                        <option>like</option>
-                                                        <option>&gt;</option>
-                                                        <option>&gt;=</option>
-                                                        <option>&lt;</option>
-                                                        <option>&lt;=</option>
-                                                        <option>!=</option>
-                                                        <option>not like</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control"/>
-                                                </div>
-                                            </div>
-                                            <div class="query row">
-                                                <div class="col-md-2 query-relation">
-                                                    <select class="form-control">
-                                                        <option>And</option>
-                                                        <option>Or</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 query-condition">
-                                                    <select class="form-control">
-                                                        <option></option>
-                                                        <option>用户名</option>
-                                                        <option>密码</option>
-                                                        <option>首页</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2 query-operator">
-                                                    <select class="form-control">
-                                                        <option>=</option>
-                                                        <option>like</option>
-                                                        <option>&gt;</option>
-                                                        <option>&gt;=</option>
-                                                        <option>&lt;</option>
-                                                        <option>&lt;=</option>
-                                                        <option>!=</option>
-                                                        <option>not like</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 query-value">
-                                                    <input type="text" class="form-control"/>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <button type="button" class="btn btn-primary">查询</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="panel-heading">
                                 <a href="<c:url value="/sys/user/add"/>" class="btn btn-primary tab-trigger"
                                     data-url="<c:url value="/sys/user/add"/>"
                                     data-tabpaneid="user-add"
@@ -196,6 +92,91 @@ $(function(){
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            <div class="panel-body">
+                                <div class="col-md-6">
+                                    <form action="#" method="post">
+                                        <div class="query-group">
+                                            <div class="query row">
+                                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                                    <select class="form-control">
+                                                        <option>And</option>
+                                                        <option>Or</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                                    <select class="form-control">
+                                                        <option></option>
+                                                        <option>用户名</option>
+                                                        <option>密码</option>
+                                                        <option>首页</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                                    <select class="form-control">
+                                                        <option>=</option>
+                                                        <option>like</option>
+                                                        <option>&gt;</option>
+                                                        <option>&gt;=</option>
+                                                        <option>&lt;</option>
+                                                        <option>&lt;=</option>
+                                                        <option>!=</option>
+                                                        <option>not like</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                                    <input type="text" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="query row">
+                                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                                    <select class="form-control">
+                                                        <option>And</option>
+                                                        <option>Or</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                                    <select class="form-control">
+                                                        <option></option>
+                                                        <option>用户名</option>
+                                                        <option>密码</option>
+                                                        <option>首页</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                                    <select class="form-control">
+                                                        <option>=</option>
+                                                        <option>like</option>
+                                                        <option>&gt;</option>
+                                                        <option>&gt;=</option>
+                                                        <option>&lt;</option>
+                                                        <option>&lt;=</option>
+                                                        <option>!=</option>
+                                                        <option>not like</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                                    <input type="text" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-1 col-sm-1 col-xs-1">
+                                                    <input type="text" class="form-control"/>
+                                                </div>
+                                                <ul class="pagination" style="margin:0; margin-left:10px;">
+                                                    <li><a href="#">&laquo;</a></li>
+                                                    <li><a href="#">1</a></li>
+                                                    <li><a href="#">2</a></li>
+                                                    <li><a href="#">3</a></li>
+                                                    <li><a href="#">4</a></li>
+                                                    <li><a href="#">5</a></li>
+                                                    <li><a href="#">&raquo;</a></li>
+                                                </ul>
+                                                <button type="button" class="btn btn-primary pull-right">查询</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
