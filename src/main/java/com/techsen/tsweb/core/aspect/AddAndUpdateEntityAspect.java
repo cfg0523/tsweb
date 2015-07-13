@@ -1,0 +1,61 @@
+package com.techsen.tsweb.core.aspect;
+
+import static com.techsen.tsweb.core.util.SubjectUtil.getPrincipal;
+import static com.techsen.tsweb.core.util.UUIDUtil.uuid;
+import static com.techsen.tsweb.core.util.ValidUtil.isValid;
+
+import java.util.Date;
+
+import org.aspectj.lang.JoinPoint;
+
+import com.techsen.tsweb.core.domain.BaseEntity;
+
+/**
+ * 拦截Service的新增、修改操作<br/>
+ * 设置被新增对象的creatBy和createDate<br/>
+ * 设置被修改对象的updateBy和updateDate
+ */
+public class AddAndUpdateEntityAspect {
+
+    /**
+     * 在新增之前设置被新增对象的creatBy和createDate
+     */
+    @SuppressWarnings("unchecked")
+    public <T> void beforeNewAddEntity(JoinPoint jp) {
+        System.out.println("-------------before newAdd-----------------");
+        if (isValid(jp.getArgs())) {
+            for (Object arg : jp.getArgs()) {
+                if (arg instanceof BaseEntity) {
+                    BaseEntity<T> entity = (BaseEntity<T>) arg;
+                    if (!isValid(entity.getId())) {
+                        // 如果entity没有设置Id，那么生成一个32位的uuid作为id
+                        String uuid = uuid();
+                        entity.setId(uuid); // 设置实体的id
+                        System.out.println("----setId: " + uuid + "----");
+                    }
+                    entity.setCreateBy(getPrincipal()); // 设置创建者id
+                    entity.setCreateDate(new Date()); // 设置创建时间
+                }
+            }
+        }
+        System.out.println("-------------after  newAdd-----------------");
+    }
+
+    /**
+     * 在修改之前设置被修改对象的updateBy和updateDate
+     */
+    @SuppressWarnings("unchecked")
+    public <T> void beforeUpdateEntity(JoinPoint jp) {
+        System.out.println("-------------before update-----------------");
+        if (isValid(jp.getArgs())) {
+            for (Object arg : jp.getArgs()) {
+                if (arg instanceof BaseEntity) {
+                    BaseEntity<T> entity = (BaseEntity<T>) arg;
+                    entity.setUpdateBy(getPrincipal()); // 设置修改者id
+                    entity.setUpdateDate(new Date()); // 设置修改时间
+                }
+            }
+        }
+        System.out.println("-------------after  update-----------------");
+    }
+}

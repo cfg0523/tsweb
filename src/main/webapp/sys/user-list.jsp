@@ -12,18 +12,32 @@
 <script type="text/javascript" src="<c:url value="/static/js/jquery.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.form.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/bootstrap/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/js/tsweb.js"/>"></script>
 
 <style type="text/css">
     #page-body {
         margin-top: 70px;
     }
+    
+    .tab-pane .panel {
+        border-top:0;
+        border-top-left-radius:0;
+        border-top-right-radius:0;
+    }
+    
+    .nav-tabs .close {
+        margin-left: .8em;
+        font-size: 1em;
+    }
 </style>
 
 <script type="text/javascript">
 $(function(){
-	$(".nav-tabs a").on('click', function(e){
+	$("#page-content").on('click', '.nav-tabs a', function(e){
 		$(this).tab('show');
 	});
+	
+	$('.tab-trigger').tabtrigger();
 });
 </script>
 
@@ -36,24 +50,26 @@ $(function(){
 	
 	<div class="container-fluid" id="page-body">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2" id="page-aside">
                 <jsp:include page="/aside.jsp"/>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10" id="page-content">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#user-list">用户列表</a></li>
-                    <li><a href="#user-add">添加用户</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="user-list">
-                        <div class="panel panel-default" style="border-top:0; border-top-left-radius:0; border-top-right-radius:0;">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <a href="<c:url value="/sys/user/add"/>" class="btn btn-primary tab-trigger" data-url="/tsweb/sys/user/add" data-tabpaneid="user-add" data-tablabel="添加用户" data-navtabs=".nav-tabs" data-tabcontent=".tab-content">添加</a>
+                            </div>
                             <table class="table table-hover table-responsive table-condensed">
                                 <thead>
                                     <tr>
                                         <th>用户ID</th>
                                         <th>用户名</th>
                                         <th>首页</th>
-                                        <th>选择</th>
+                                        <th><input type="checkbox" title="select all"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,36 +78,11 @@ $(function(){
                                         <td>${user.id}</td>
                                         <td>${user.username}</td>
                                         <td>${user.indexMenu.path}</td>
-                                        <td><input type="checkbox"/></td>
+                                        <th><input type="checkbox" name="selectIds" value="${user.id}"></th>
                                     </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="user-add">
-                        <div class="panel panel-default" style="border-top:0; border-top-left-radius:0; border-top-right-radius:0;">
-                            <div class="panel-body">
-	                            <form action="#" class="form-horizontal">
-	                                <div class="form-group">
-	                                    <label class="col-md-1 control-label" for="username">用户名</label>
-	                                    <div class="col-md-5">
-	                                        <input type="text" class="form-control" name="username" id="username"/>
-	                                    </div>
-	                                </div>
-	                                <div class="form-group">
-                                        <label class="col-md-1 control-label" for="indexMenu">首页</label>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" name="indexMenu" id="indexMenu"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-offset-1 col-md-5">
-                                            <input type="submit" class="btn btn-primary" name="submit" value="保存"/>
-                                        </div>
-                                    </div>
-	                            </form>
-                            </div>
                         </div>
                     </div>
                 </div>

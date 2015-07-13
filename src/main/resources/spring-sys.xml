@@ -44,5 +44,16 @@
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
         <property name="proxyTargetClass" value="true" />
     </bean>
-
+    
+    <!-- 拦截Service的新增、修改操作，设置被新增对象的creatBy和createDate，设置被修改对象的updateBy和updateDate -->
+    <!-- 暂时存在一个Bug，设置了AOP之后，配置的缓存注解失效 -->
+    <bean id="addAndUpdateEntityAspect" class="com.techsen.tsweb.core.aspect.AddAndUpdateEntityAspect" />
+    <aop:config>
+        <aop:pointcut id="newAddEntityPointCut" expression="execution(* com.techsen.tsweb.core.service.impl.BaseService.add(..))" />
+        <aop:pointcut id="updateEntityPointCut" expression="execution(* com.techsen.tsweb.core.service.impl.BaseService.update(..))" />
+        <aop:aspect ref="addAndUpdateEntityAspect">
+            <aop:before method="beforeNewAddEntity" pointcut-ref="newAddEntityPointCut" />
+            <aop:before method="beforeUpdateEntity" pointcut-ref="updateEntityPointCut" />
+        </aop:aspect>
+    </aop:config>
 </beans>
