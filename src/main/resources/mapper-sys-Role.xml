@@ -103,4 +103,9 @@
         from <include refid="RoleTable"/>
     </select>
     
+    <select id="findBySql" resultMap="RoleMap">
+        select <include refid="RoleColumns"/>
+        from <include refid="RoleTable"/>
+        <where> ${sql} </where>
+    </select>
 </mapper>

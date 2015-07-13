@@ -5,6 +5,7 @@ import java.util.List;
 import com.techsen.tsweb.core.dao.Dao;
 import com.techsen.tsweb.core.domain.BaseEntity;
 import com.techsen.tsweb.core.service.Service;
+import com.techsen.tsweb.core.util.sql.Sql;
 
 public abstract class BaseService<E extends BaseEntity<E>, T extends Dao<E>>
         implements Service<E> {
@@ -68,5 +69,13 @@ public abstract class BaseService<E extends BaseEntity<E>, T extends Dao<E>>
     @Override
     public List<E> findAll() {
         return this.dao.findAll();
+    }
+    
+    /**
+     * 根据Sql对象查询对象集合
+     */
+    @Override
+    public List<E> findBySql(Sql sql) {
+        return this.dao.findBySql(sql);
     }
 }

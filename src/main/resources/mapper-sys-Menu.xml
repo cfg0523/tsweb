@@ -121,6 +121,12 @@
         from <include refid="MenuTable"/>
     </select>
     
+    <select id="findBySql" resultMap="MenuMap">
+        select <include refid="MenuColumns"/>
+        from <include refid="MenuTable"/>
+        <where> ${sql} </where>
+    </select>
+    
     <select id="getSubMenusByParentId" resultMap="MenuMap">
         select <include refid="MenuColumns"/>
         from <include refid="MenuTable"/>

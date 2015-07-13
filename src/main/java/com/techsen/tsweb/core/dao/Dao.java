@@ -3,6 +3,7 @@ package com.techsen.tsweb.core.dao;
 import java.util.List;
 
 import com.techsen.tsweb.core.domain.BaseEntity;
+import com.techsen.tsweb.core.util.sql.Sql;
 
 /**
  * 公共的Dao接口
@@ -43,4 +44,10 @@ public interface Dao<T extends BaseEntity<T>> {
      * 查询所有的Entity
      */
     List<T> findAll();
+    
+    /**
+     * 根据Sql对象查询对象集合
+     */
+    List<T> findBySql(Sql sql);
+    
 }

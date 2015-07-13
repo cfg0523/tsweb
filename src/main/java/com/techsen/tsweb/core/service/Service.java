@@ -3,6 +3,7 @@ package com.techsen.tsweb.core.service;
 import java.util.List;
 
 import com.techsen.tsweb.core.domain.BaseEntity;
+import com.techsen.tsweb.core.util.sql.Sql;
 
 public interface Service<T extends BaseEntity<T>> {
 
@@ -41,4 +42,8 @@ public interface Service<T extends BaseEntity<T>> {
      */
     public List<T> findAll();
     
+    /**
+     * 根据Sql对象查询对象集合
+     */
+    List<T> findBySql(Sql sql);
 }

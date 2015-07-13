@@ -116,6 +116,12 @@
         from <include refid="AuthTable"/>
     </select>
     
+    <select id="findBySql" resultMap="AuthMap">
+        select <include refid="AuthColumns"/>
+        from <include refid="AuthTable"/>
+        <where> ${sql} </where>
+    </select>
+    
     <select id="getAuthsByUserId" parameterType="string" resultMap="AuthMap">
         select <include refid="AuthColumns"/>
         from <include refid="AuthTable"/>

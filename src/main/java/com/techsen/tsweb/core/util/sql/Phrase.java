@@ -43,26 +43,30 @@ public class Phrase implements Sql {
 	public Relation getRelation() {
 		return relation;
 	}
-	public void setRelation(Relation relation) {
+	public Phrase setRelation(Relation relation) {
 		this.relation = relation;
+		return this;
 	}
 	public String getCondition() {
 		return condition;
 	}
-	public void setCondition(String condition) {
+	public Phrase setCondition(String condition) {
 		this.condition = condition;
+        return this;
 	}
 	public Operator getOperator() {
 		return operator;
 	}
-	public void setOperator(Operator operator) {
+	public Phrase setOperator(Operator operator) {
 		this.operator = operator;
+        return this;
 	}
 	public String getValue() {
 		return value;
 	}
-	public void setValue(String value) {
+	public Phrase setValue(String value) {
 		this.value = value;
+        return this;
 	}
 	
 	public static void main(String args[]){

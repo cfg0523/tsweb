@@ -99,59 +99,27 @@ $(function(){
                                             <div class="query row">
                                                 <div class="col-md-2 col-sm-2 col-xs-2">
                                                     <select class="form-control">
-                                                        <option>And</option>
-                                                        <option>Or</option>
+                                                        <option value="and">And</option>
+                                                        <option value="or">Or</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4 col-xs-4">
                                                     <select class="form-control">
                                                         <option></option>
-                                                        <option>用户名</option>
-                                                        <option>密码</option>
-                                                        <option>首页</option>
+                                                        <option value="user_name">用户名</option>
+                                                        <option value="user_password">密码</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2 col-sm-2 col-xs-2">
                                                     <select class="form-control">
-                                                        <option>=</option>
-                                                        <option>like</option>
-                                                        <option>&gt;</option>
-                                                        <option>&gt;=</option>
-                                                        <option>&lt;</option>
-                                                        <option>&lt;=</option>
-                                                        <option>!=</option>
-                                                        <option>not like</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4 col-xs-4">
-                                                    <input type="text" class="form-control"/>
-                                                </div>
-                                            </div>
-                                            <div class="query row">
-                                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                                    <select class="form-control">
-                                                        <option>And</option>
-                                                        <option>Or</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4 col-xs-4">
-                                                    <select class="form-control">
-                                                        <option></option>
-                                                        <option>用户名</option>
-                                                        <option>密码</option>
-                                                        <option>首页</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                                    <select class="form-control">
-                                                        <option>=</option>
-                                                        <option>like</option>
-                                                        <option>&gt;</option>
-                                                        <option>&gt;=</option>
-                                                        <option>&lt;</option>
-                                                        <option>&lt;=</option>
-                                                        <option>!=</option>
-                                                        <option>not like</option>
+                                                        <option value="eq">=</option>
+                                                        <option value="like">like</option>
+                                                        <option value="gt">&gt;</option>
+                                                        <option value="ge">&gt;=</option>
+                                                        <option value="lt">&lt;</option>
+                                                        <option value="le">&lt;=</option>
+                                                        <option value="ne">!=</option>
+                                                        <option value="notlike">not like</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4 col-sm-4 col-xs-4">
