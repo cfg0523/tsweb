@@ -18,4 +18,12 @@ public class UserServiceImpl extends BaseService<User, UserDao> implements UserS
         this.dao = dao;
     }
 
+    /**
+     * 修改用户密码
+     */
+    @Override
+    public void changePassword(User user) {
+        this.dao.changePassword(user);
+    }
+
 }

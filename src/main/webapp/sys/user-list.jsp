@@ -37,7 +37,10 @@ $(function(){
 		$(this).tab('show');
 	});
 	
-	$('.tab-trigger').tabtrigger();
+	$('.tab-trigger').on('click', function(e) {
+	    e.preventDefault();
+	    $(this).tabtrigger();
+	});
 });
 </script>
 
@@ -59,31 +62,52 @@ $(function(){
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="user-list">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <a href="<c:url value="/sys/user/add"/>" class="btn btn-primary tab-trigger" data-url="/tsweb/sys/user/add" data-tabpaneid="user-add" data-tablabel="添加用户" data-navtabs=".nav-tabs" data-tabcontent=".tab-content">添加</a>
-                            </div>
-                            <table class="table table-hover table-responsive table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>用户ID</th>
-                                        <th>用户名</th>
-                                        <th>首页</th>
-                                        <th><input type="checkbox" title="select all"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${users}" var="user">
-                                    <tr>
-                                        <td>${user.id}</td>
-                                        <td>${user.username}</td>
-                                        <td>${user.indexMenu.path}</td>
-                                        <th><input type="checkbox" name="selectIds" value="${user.id}"></th>
-                                    </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
+	                    <div class="panel panel-default">
+	                        <div class="panel-body">
+	                            <a href="<c:url value="/sys/user/add"/>" class="btn btn-primary tab-trigger"
+	                                data-url="<c:url value="/sys/user/add"/>"
+	                                data-tabpaneid="user-add"
+	                                data-tablabel="添加用户"
+	                                data-navtabs=".nav-tabs"
+	                                data-tabcontent=".tab-content">添加</a>
+	                        </div>
+	                        <table class="table table-hover table-responsive table-condensed">
+	                            <thead>
+	                                <tr>
+	                                    <th><input type="checkbox" title="select all"></th>
+	                                    <th>用户ID</th>
+	                                    <th>用户名</th>
+	                                    <th>首页</th>
+	                                    <th>操作</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                                <c:forEach items="${users}" var="user">
+	                                <tr>
+	                                    <th><input type="checkbox" name="selectIds" value="${user.id}"></th>
+	                                    <td>${user.id}</td>
+	                                    <td>${user.username}</td>
+	                                    <td>${user.indexMenu.path}</td>
+	                                    <td>
+	                                        <a href="<c:url value="/sys/user/update/${user.id}"/>" class="btn-link tab-trigger"
+												data-url="<c:url value="/sys/user/update/${user.id}"/>"
+												data-tabpaneid="user-update-${user.id}"
+												data-tablabel="修改用户:${user.username}"
+												data-navtabs=".nav-tabs"
+												data-tabcontent=".tab-content">修改</a>
+                                            <a href="<c:url value="/sys/user/chgpwd/${user.id}"/>" class="btn-link tab-trigger"
+                                                data-url="<c:url value="/sys/user/chgpwd/${user.id}"/>"
+                                                data-tabpaneid="user-chgpwd-${user.id}"
+                                                data-tablabel="修改密码:${user.username}"
+                                                data-navtabs=".nav-tabs"
+                                                data-tabcontent=".tab-content">修改密码</a>
+	                                        <a href="<c:url value="/sys/user/delete/${user.id}"/>" class="btn-link">删除</a>
+	                                    </td>
+	                                </tr>
+	                                </c:forEach>
+	                            </tbody>
+	                        </table>
+	                    </div>
                     </div>
                 </div>
             </div>

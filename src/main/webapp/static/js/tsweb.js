@@ -3,14 +3,17 @@
     
     $.extend($.fn, {
         tabtrigger: function(options) {
-        	var settings = $.extend({}, {
-        	    url : this.attr('href') || this.data('url'),
-        	    tabpaneid : this.data('tabpaneid'),
-        	    tablabel : this.data('tablabel'),
-        	    navtabs : this.data('navtabs'),
-        	    tabcontent : this.data('tabcontent'),
-        	    data : {},
-                render: function(html) {
+            var settings = $.extend({}, {
+                url : this.attr('href') || this.data('url'),
+                tabpaneid : this.data('tabpaneid'),
+                tablabel : this.data('tablabel'),
+                navtabs : this.data('navtabs'),
+                tabcontent : this.data('tabcontent'),
+                data : {}
+            }, options);
+            
+            if (settings.url) {
+                $.get(settings.url, settings.data, function(html) {
                     var $navtabs = $(settings.navtabs);
                     var $a = $navtabs.find('a[href*="' + settings.tabpaneid + '"]');
                     if ($a.size() > 0) {
@@ -31,15 +34,8 @@
                             $div.detach();
                         });
                     }
-                },
-        	    show: function(e) {
-                    e.preventDefault();
-                    if (settings.url) {
-                        $.get(settings.url, settings.data, settings.render);
-                    }
-                }
-        	}, options);
-            this.on('click', settings.show);
+                });
+            }
         }
     });
 })(jQuery);
