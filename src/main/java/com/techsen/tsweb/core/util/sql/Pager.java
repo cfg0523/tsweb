@@ -8,15 +8,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Sentence implements Sql {
+public class Pager<T> implements Sql {
 	private List<Phrase> phrases;
 	private List<String> orderBys;
-    private int pagesize = -1;
+    private int pagesize = 10;
     private int pagecode = 1;
 	
-	public Sentence(){}
+    private List<T> entities;
+    private int totalsize;
+    
+	public Pager(){}
 	
-	public Sentence(Relation[] relations, String[] conditions, Operator[] operators, String[] values){
+	public Pager(Relation[] relations, String[] conditions, Operator[] operators, String[] values){
 		List<Phrase> phrases = new ArrayList<Phrase>();
 		if(isValid(conditions)){
 			for(int i=0; i<conditions.length; i++){
@@ -27,10 +30,10 @@ public class Sentence implements Sql {
 		this.phrases = phrases;
 	}
 	
-	public Sentence(List<Phrase> phrases){
+	public Pager(List<Phrase> phrases){
 		this.phrases = phrases;
 	}
-    
+
     public String getSql(){
         String retStr = EMPTY_STRING;
         StringBuilder sb = new StringBuilder();
@@ -59,7 +62,7 @@ public class Sentence implements Sql {
         return retStr;
     }
     
-	public Sentence appendPhrases(Collection<Phrase> phrases){
+	public Pager<T> appendPhrases(Collection<Phrase> phrases){
 		if(this.phrases == null){
 			this.phrases = new ArrayList<Phrase>();
 		}
@@ -69,7 +72,7 @@ public class Sentence implements Sql {
 		return this;
 	}
 	
-	public Sentence appendPhrases(Phrase ... phrases){
+	public Pager<T> appendPhrases(Phrase ... phrases){
 		if(this.phrases == null){
 			this.phrases = new ArrayList<Phrase>();
 		}
@@ -79,7 +82,7 @@ public class Sentence implements Sql {
 		return this;
 	}
 	
-	public Sentence appendOrderBys(Collection<String> orderBys){
+	public Pager<T> appendOrderBys(Collection<String> orderBys){
 		if(this.orderBys == null){
 			this.orderBys = new ArrayList<String>();
 		}
@@ -89,7 +92,7 @@ public class Sentence implements Sql {
 		return this;
 	}
 	
-	public Sentence appendOrderBys(String ... orderBys){
+	public Pager<T> appendOrderBys(String ... orderBys){
 		if(this.orderBys == null){
 			this.orderBys = new ArrayList<String>();
 		}
@@ -107,7 +110,7 @@ public class Sentence implements Sql {
 		return phrases;
 	}
 
-	public Sentence setPhrases(List<Phrase> phrases) {
+	public Pager<T> setPhrases(List<Phrase> phrases) {
 		this.phrases = phrases;
 		return this;
 	}
@@ -116,7 +119,7 @@ public class Sentence implements Sql {
 		return orderBys;
 	}
 
-	public Sentence setOrderBys(List<String> orderBys) {
+	public Pager<T> setOrderBys(List<String> orderBys) {
 		this.orderBys = orderBys;
 		return this;
 	}
@@ -125,7 +128,7 @@ public class Sentence implements Sql {
         return pagesize;
     }
 
-    public Sentence setPagesize(int pagesize) {
+    public Pager<T> setPagesize(int pagesize) {
         this.pagesize = pagesize;
         return this;
     }
@@ -134,13 +137,31 @@ public class Sentence implements Sql {
         return pagecode;
     }
 
-    public Sentence setPagecode(int pagecode) {
+    public Pager<T> setPagecode(int pagecode) {
         this.pagecode = pagecode;
         return this;
     }
 
+    public List<T> getEntities() {
+        return entities;
+    }
+
+    public Pager<T> setEntities(List<T> entities) {
+        this.entities = entities;
+        return this;
+    }
+
+    public int getTotalsize() {
+        return totalsize;
+    }
+
+    public Pager<T> setTotalsize(int totalsize) {
+        this.totalsize = totalsize;
+        return this;
+    }
+
     public static void main(String args[]){
-		Sentence sentence = new Sentence();
+		Pager sentence = new Pager();
 		sentence.appendPhrases(new Phrase(Relation.and, "def_code", Operator.gt, "100"))
 				.appendPhrases(new Phrase(Relation.and, "def_code", Operator.lt, "500"))
 				.appendOrderBys("def_type")

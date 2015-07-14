@@ -129,6 +129,13 @@
         <where> ${sql} </where>
     </select>
     
+    <select id="getTotalSize" resultType="int">
+        select count(1)
+        from <include refid="UserRoleTable"/>
+        join <include refid="com.techsen.tsweb.sys.dao.UserDao.UserTable"/> on userrole_user_id = user_id
+        join <include refid="com.techsen.tsweb.sys.dao.RoleDao.RoleTable"/> on userrole_role_id = role_id
+    </select>
+    
     <select id="getUserRolesByUserId" parameterType="string" resultMap="UserRoleMap">
         select <include refid="SelectUserRoleColumns"/>
         from <include refid="UserRoleTable"/>

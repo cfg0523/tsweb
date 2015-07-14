@@ -122,6 +122,11 @@
         <where> ${sql} </where>
     </select>
     
+    <select id="getTotalSize" resultType="int">
+        select count(1)
+        from <include refid="AuthTable"/>
+    </select>
+    
     <select id="getAuthsByUserId" parameterType="string" resultMap="AuthMap">
         select <include refid="AuthColumns"/>
         from <include refid="AuthTable"/>

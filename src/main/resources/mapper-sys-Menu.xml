@@ -127,6 +127,11 @@
         <where> ${sql} </where>
     </select>
     
+    <select id="getTotalSize" resultType="int">
+        select count(1)
+        from <include refid="MenuTable"/>
+    </select>
+    
     <select id="getSubMenusByParentId" resultMap="MenuMap">
         select <include refid="MenuColumns"/>
         from <include refid="MenuTable"/>

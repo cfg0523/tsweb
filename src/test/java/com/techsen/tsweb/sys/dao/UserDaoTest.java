@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.techsen.tsweb.core.util.sql.Operator;
 import com.techsen.tsweb.core.util.sql.Phrase;
 import com.techsen.tsweb.core.util.sql.Relation;
-import com.techsen.tsweb.core.util.sql.Sentence;
+import com.techsen.tsweb.core.util.sql.Pager;
 import com.techsen.tsweb.sys.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -31,13 +31,15 @@ public class UserDaoTest {
     
     @Test
     public void testGetSql() {
-        Sentence sql = new Sentence();
+        Pager<User> sql = new Pager<User>();
         sql.appendPhrases(new Phrase(Relation.and, "user_name", Operator.like, "a"));
         sql.appendPhrases(new Phrase(Relation.and, "user_id", Operator.gt, "U02"));
-        sql.setPagesize(10).setPagecode(0);
+        sql.setPagesize(10).setPagecode(1);
         
         List<User> users = this.userDao.findBySql(sql);
+        int totalsize = this.userDao.getTotalSize();
         
         System.out.println(users);
+        System.out.println(totalsize);
     }
 }

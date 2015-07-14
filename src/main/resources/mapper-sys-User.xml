@@ -115,6 +115,11 @@
         <where> ${sql} </where>
     </select>
     
+    <select id="getTotalSize" resultType="int">
+        select count(1)
+        from <include refid="UserTable"/>
+    </select>
+    
     <update id="changePassword" parameterType="User">
         update <include refid="UserTable"/>
         set user_password = #{password}

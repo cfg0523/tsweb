@@ -5,7 +5,7 @@ import java.util.List;
 import com.techsen.tsweb.core.dao.Dao;
 import com.techsen.tsweb.core.domain.BaseEntity;
 import com.techsen.tsweb.core.service.Service;
-import com.techsen.tsweb.core.util.sql.Sql;
+import com.techsen.tsweb.core.util.sql.Pager;
 
 public abstract class BaseService<E extends BaseEntity<E>, T extends Dao<E>>
         implements Service<E> {
@@ -72,10 +72,12 @@ public abstract class BaseService<E extends BaseEntity<E>, T extends Dao<E>>
     }
     
     /**
-     * 根据Sql对象查询对象集合
+     * 分页查询集合对象
      */
-    @Override
-    public List<E> findBySql(Sql sql) {
-        return this.dao.findBySql(sql);
+    public Pager<E> findByPager(Pager<E> pager) {
+        List<E> entities = this.dao.findBySql(pager);
+        int totalsize = this.dao.getTotalSize();
+        pager.setEntities(entities).setTotalsize(totalsize);
+        return pager;
     }
 }

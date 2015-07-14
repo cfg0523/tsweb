@@ -50,4 +50,9 @@ public interface Dao<T extends BaseEntity<T>> {
      */
     List<T> findBySql(Sql sql);
     
+    /**
+     * 根据数据总数
+     */
+    int getTotalSize();
+    
 }

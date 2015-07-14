@@ -3,7 +3,7 @@ package com.techsen.tsweb.core.service;
 import java.util.List;
 
 import com.techsen.tsweb.core.domain.BaseEntity;
-import com.techsen.tsweb.core.util.sql.Sql;
+import com.techsen.tsweb.core.util.sql.Pager;
 
 public interface Service<T extends BaseEntity<T>> {
 
@@ -43,7 +43,7 @@ public interface Service<T extends BaseEntity<T>> {
     public List<T> findAll();
     
     /**
-     * 根据Sql对象查询对象集合
+     * 分页查询集合对象
      */
-    List<T> findBySql(Sql sql);
+    public Pager<T> findByPager(Pager<T> pager);
 }

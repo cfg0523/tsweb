@@ -108,4 +108,10 @@
         from <include refid="RoleTable"/>
         <where> ${sql} </where>
     </select>
+    
+    <select id="getTotalSize" resultType="int">
+        select count(1)
+        from <include refid="RoleTable"/>
+    </select>
+    
 </mapper>
