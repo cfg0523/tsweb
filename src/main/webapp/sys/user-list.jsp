@@ -94,55 +94,7 @@ $(function(){
                             </table>
                             <div class="panel-body">
                                 <div class="col-md-6">
-                                    <form action="#" method="post">
-                                        <div class="query-group">
-                                            <div class="query row">
-                                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                                    <select class="form-control">
-                                                        <option value="and">And</option>
-                                                        <option value="or">Or</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4 col-xs-4">
-                                                    <select class="form-control">
-                                                        <option></option>
-                                                        <option value="user_name">用户名</option>
-                                                        <option value="user_password">密码</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2 col-sm-2 col-xs-2">
-                                                    <select class="form-control">
-                                                        <option value="eq">=</option>
-                                                        <option value="like">like</option>
-                                                        <option value="gt">&gt;</option>
-                                                        <option value="ge">&gt;=</option>
-                                                        <option value="lt">&lt;</option>
-                                                        <option value="le">&lt;=</option>
-                                                        <option value="ne">!=</option>
-                                                        <option value="notlike">not like</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 col-sm-4 col-xs-4">
-                                                    <input type="text" class="form-control"/>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-1 col-sm-1 col-xs-1">
-                                                    <input type="text" class="form-control"/>
-                                                </div>
-                                                <ul class="pagination" style="margin:0; margin-left:10px;">
-                                                    <li><a href="#">&laquo;</a></li>
-                                                    <li><a href="#">1</a></li>
-                                                    <li><a href="#">2</a></li>
-                                                    <li><a href="#">3</a></li>
-                                                    <li><a href="#">4</a></li>
-                                                    <li><a href="#">5</a></li>
-                                                    <li><a href="#">&raquo;</a></li>
-                                                </ul>
-                                                <button type="button" class="btn btn-primary pull-right">查询</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <jsp:include page="/pager.jsp"></jsp:include>
                                 </div>
                             </div>
                         </div>

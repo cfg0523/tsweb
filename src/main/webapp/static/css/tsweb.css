@@ -19,12 +19,18 @@
 /*---------------------*/
 /* 查询组件CSS */
 .query-group .query {
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 
 .query-group [class*="col-md-"] {
     margin: 0;
     padding: 0;
+}
+
+.query-group .pagination {
+	margin:0;
+	margin-left:10px;
 }
 
 .query [class*="col-md-"] .form-control {

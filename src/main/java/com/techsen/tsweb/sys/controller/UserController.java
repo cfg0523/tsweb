@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.techsen.tsweb.core.util.sql.Pager;
 import com.techsen.tsweb.sys.domain.Menu;
 import com.techsen.tsweb.sys.domain.User;
 import com.techsen.tsweb.sys.service.MenuService;
@@ -26,10 +27,21 @@ public class UserController {
 
     @RequestMapping("/sys/user")
     public String list(Model model) {
+        Pager<User> pager = new Pager<User>();
+        
+        this.userService.findByPager(pager);
+        model.addAttribute("pager", pager);
+        
+        return "sys/user-list";
+    }
+    
+    @RequestMapping("/sys/user/page")
+    public String pager(Pager<User> pager, Model model) {
 
-        List<User> users = this.userService.findAll();
-        model.addAttribute("users", users);
-
+        System.out.println("----------------------");
+        System.out.println(pager);
+        System.out.println("----------------------");
+        
         return "sys/user-list";
     }
 

@@ -78,6 +78,7 @@ public abstract class BaseService<E extends BaseEntity<E>, T extends Dao<E>>
         List<E> entities = this.dao.findBySql(pager);
         int totalsize = this.dao.getTotalSize();
         pager.setEntities(entities).setTotalsize(totalsize);
+        pager.countpagecode();
         return pager;
     }
 }

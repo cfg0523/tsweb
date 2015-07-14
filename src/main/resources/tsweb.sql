@@ -21,6 +21,13 @@ insert into sys_user_mstr values ('U03', 'giny', 'giny', 'M01', '', null, '', nu
 insert into sys_user_mstr values ('U04', 'yilia', 'yilia', 'M02', '', null, '', null, '');
 insert into sys_user_mstr values ('U05', 'tracy', 'tracy', 'M02', '', null, '', null, '');
 
+insert into sys_user_mstr values ('U06', 'wayne', 'wayne', 'M02', '', null, '', null, '');
+insert into sys_user_mstr values ('U07', 'kxhuang', 'kxhuang', 'M02', '', null, '', null, '');
+insert into sys_user_mstr values ('U08', 'frankie', 'frankie', 'M02', '', null, '', null, '');
+insert into sys_user_mstr values ('U09', 'sshi', 'sshi', 'M02', '', null, '', null, '');
+insert into sys_user_mstr values ('U10', 'syxie', 'syxie', 'M02', '', null, '', null, '');
+insert into sys_user_mstr values ('U11', 'xfliu', 'xfliu', 'M02', '', null, '', null, '');
+
 /**
  * sys_role_mstr
  */

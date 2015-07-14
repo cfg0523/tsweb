@@ -17,6 +17,35 @@ public class Pager<T> implements Sql {
     private List<T> entities;
     private int totalsize;
     
+    private static int PAGER_LENGTH = 5;
+    
+    private int maxpagecode;
+    private int firstpagecode;
+    private int lastpagecode;
+    
+    public void countpagecode() {
+        if (this.totalsize % this.pagesize == 0) {
+            this.maxpagecode = this.totalsize / this.pagesize;
+        } else {
+            this.maxpagecode = this.totalsize / this.pagesize + 1;
+        }
+        if (this.maxpagecode <= PAGER_LENGTH) {
+            this.firstpagecode = 1;
+            this.lastpagecode = this.maxpagecode;
+        } else {
+            if (this.pagecode <= PAGER_LENGTH / 2) {
+                this.firstpagecode = 1;
+                this.lastpagecode = PAGER_LENGTH;
+            } else if(this.pagecode > this.maxpagecode - PAGER_LENGTH / 2) {
+                this.firstpagecode = this.maxpagecode - PAGER_LENGTH + 1;
+                this.lastpagecode = this.maxpagecode;
+            } else {
+                this.firstpagecode = this.pagecode - PAGER_LENGTH / 2;
+                this.lastpagecode = this.pagecode + PAGER_LENGTH / 2;
+            }
+        }
+    }
+    
 	public Pager(){}
 	
 	public Pager(Relation[] relations, String[] conditions, Operator[] operators, String[] values){
@@ -160,7 +189,19 @@ public class Pager<T> implements Sql {
         return this;
     }
 
-    public static void main(String args[]){
+    public int getMaxpagecode() {
+        return maxpagecode;
+    }
+
+    public int getFirstpagecode() {
+        return firstpagecode;
+    }
+
+    public int getLastpagecode() {
+        return lastpagecode;
+    }
+
+    /*public static void main(String args[]){
 		Pager sentence = new Pager();
 		sentence.appendPhrases(new Phrase(Relation.and, "def_code", Operator.gt, "100"))
 				.appendPhrases(new Phrase(Relation.and, "def_code", Operator.lt, "500"))
@@ -169,5 +210,5 @@ public class Pager<T> implements Sql {
 				.setPagecode(5)
 		        .setPagesize(10);
 		System.out.println(sentence.getSql());
-	}
+	}*/
 }
