@@ -75,8 +75,8 @@ public abstract class BaseService<E extends BaseEntity<E>, T extends Dao<E>>
      * 分页查询集合对象
      */
     public Pager<E> findByPager(Pager<E> pager) {
-        List<E> entities = this.dao.findBySql(pager);
-        int totalsize = this.dao.getTotalSize();
+        List<E> entities = this.dao.findByPager(pager);
+        int totalsize = this.dao.getTotalSizeByPager(pager);
         pager.setEntities(entities).setTotalsize(totalsize);
         pager.countpagecode();
         return pager;

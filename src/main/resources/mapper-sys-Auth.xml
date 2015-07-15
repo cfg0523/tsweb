@@ -116,15 +116,22 @@
         from <include refid="AuthTable"/>
     </select>
     
-    <select id="findBySql" resultMap="AuthMap">
+    <select id="findByPager" resultMap="AuthMap">
         select <include refid="AuthColumns"/>
         from <include refid="AuthTable"/>
-        <where> ${sql} </where>
+        <if test='where != ""'>
+            <where> ${where} </where>
+        </if>
+        <if test='orderBy != ""'> ${orderBy} </if>
+        <if test='limit != ""'> ${limit} </if>
     </select>
     
-    <select id="getTotalSize" resultType="int">
+    <select id="getTotalSizeByPager" resultType="int">
         select count(1)
         from <include refid="AuthTable"/>
+        <if test='where != ""'>
+            <where> ${where} </where>
+        </if>
     </select>
     
     <select id="getAuthsByUserId" parameterType="string" resultMap="AuthMap">

@@ -31,13 +31,13 @@ public class UserDaoTest {
     
     @Test
     public void testGetSql() {
-        Pager<User> sql = new Pager<User>();
-        sql.appendPhrases(new Phrase(Relation.and, "user_name", Operator.like, "a"));
-        sql.appendPhrases(new Phrase(Relation.and, "user_id", Operator.gt, "U02"));
-        sql.setPagesize(10).setPagecode(1);
+        Pager<User> pager = new Pager<User>();
+        pager.appendPhrases(new Phrase(Relation.and, "user_name", Operator.like, "a"));
+        pager.appendPhrases(new Phrase(Relation.and, "user_id", Operator.gt, "U02"));
+        pager.setPagesize(10).setPagecode(1);
         
-        List<User> users = this.userDao.findBySql(sql);
-        int totalsize = this.userDao.getTotalSize();
+        List<User> users = this.userDao.findByPager(pager);
+        int totalsize = this.userDao.getTotalSizeByPager(pager);
         
         System.out.println(users);
         System.out.println(totalsize);

@@ -28,8 +28,9 @@ public class UserController {
     @RequestMapping("/sys/user")
     public String list(Model model) {
         Pager<User> pager = new Pager<User>();
+        pager = this.userService.findByPager(pager);
         
-        this.userService.findByPager(pager);
+        model.addAttribute("users", pager.getEntities());
         model.addAttribute("pager", pager);
         
         return "sys/user-list";
@@ -37,10 +38,10 @@ public class UserController {
     
     @RequestMapping("/sys/user/page")
     public String pager(Pager<User> pager, Model model) {
-
-        System.out.println("----------------------");
-        System.out.println(pager);
-        System.out.println("----------------------");
+        
+        pager = this.userService.findByPager(pager);
+        model.addAttribute("users", pager.getEntities());
+        model.addAttribute("pager", pager);
         
         return "sys/user-list";
     }

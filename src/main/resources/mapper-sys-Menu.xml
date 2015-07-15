@@ -121,15 +121,22 @@
         from <include refid="MenuTable"/>
     </select>
     
-    <select id="findBySql" resultMap="MenuMap">
+    <select id="findByPager" resultMap="MenuMap">
         select <include refid="MenuColumns"/>
         from <include refid="MenuTable"/>
-        <where> ${sql} </where>
+        <if test='where != ""'>
+            <where> ${where} </where>
+        </if>
+        <if test='orderBy != ""'> ${orderBy} </if>
+        <if test='limit != ""'> ${limit} </if>
     </select>
     
-    <select id="getTotalSize" resultType="int">
+    <select id="getTotalSizeByPager" resultType="int">
         select count(1)
         from <include refid="MenuTable"/>
+        <if test='where != ""'>
+            <where> ${where} </where>
+        </if>
     </select>
     
     <select id="getSubMenusByParentId" resultMap="MenuMap">

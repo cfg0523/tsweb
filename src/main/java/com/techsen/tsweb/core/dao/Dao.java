@@ -3,7 +3,7 @@ package com.techsen.tsweb.core.dao;
 import java.util.List;
 
 import com.techsen.tsweb.core.domain.BaseEntity;
-import com.techsen.tsweb.core.util.sql.Sql;
+import com.techsen.tsweb.core.util.sql.Pager;
 
 /**
  * 公共的Dao接口
@@ -46,13 +46,13 @@ public interface Dao<T extends BaseEntity<T>> {
     List<T> findAll();
     
     /**
-     * 根据Sql对象查询对象集合
+     * 根据Pager对象查询对象集合
      */
-    List<T> findBySql(Sql sql);
+    List<T> findByPager(Pager<T> pager);
     
     /**
      * 根据数据总数
      */
-    int getTotalSize();
+    int getTotalSizeByPager(Pager<T> pager);
     
 }

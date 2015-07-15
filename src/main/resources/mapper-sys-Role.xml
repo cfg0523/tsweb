@@ -103,15 +103,22 @@
         from <include refid="RoleTable"/>
     </select>
     
-    <select id="findBySql" resultMap="RoleMap">
+    <select id="findByPager" resultMap="RoleMap">
         select <include refid="RoleColumns"/>
         from <include refid="RoleTable"/>
-        <where> ${sql} </where>
+        <if test='where != ""'>
+            <where> ${where} </where>
+        </if>
+        <if test='orderBy != ""'> ${orderBy} </if>
+        <if test='limit != ""'> ${limit} </if>
     </select>
     
-    <select id="getTotalSize" resultType="int">
+    <select id="getTotalSizeByPager" resultType="int">
         select count(1)
         from <include refid="RoleTable"/>
+        <if test='where != ""'>
+            <where> ${where} </where>
+        </if>
     </select>
     
 </mapper>

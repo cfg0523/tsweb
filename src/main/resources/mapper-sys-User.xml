@@ -109,15 +109,22 @@
         from <include refid="UserTable"/>
     </select>
     
-    <select id="findBySql" resultMap="UserMap">
+    <select id="findByPager" resultMap="UserMap">
         select <include refid="UserColumns"/>
         from <include refid="UserTable"/>
-        <where> ${sql} </where>
+        <if test='where != ""'>
+            <where> ${where} </where>
+        </if>
+        <if test='orderBy != ""'> ${orderBy} </if>
+        <if test='limit != ""'> ${limit} </if>
     </select>
     
-    <select id="getTotalSize" resultType="int">
+    <select id="getTotalSizeByPager" resultType="int">
         select count(1)
         from <include refid="UserTable"/>
+        <if test='where != ""'>
+            <where> ${where} </where>
+        </if>
     </select>
     
     <update id="changePassword" parameterType="User">

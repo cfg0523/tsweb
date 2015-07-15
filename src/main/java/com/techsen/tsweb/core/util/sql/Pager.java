@@ -1,6 +1,5 @@
 package com.techsen.tsweb.core.util.sql;
 
-import static com.techsen.tsweb.core.util.Const.EMPTY_STRING;
 import static com.techsen.tsweb.core.util.Const.SPACE;
 import static com.techsen.tsweb.core.util.ValidUtil.isValid;
 
@@ -63,8 +62,11 @@ public class Pager<T> implements Sql {
 		this.phrases = phrases;
 	}
 
-    public String getSql(){
-        String retStr = EMPTY_STRING;
+	public String getSql() {
+	    return getWhere() + SPACE + getOrderBy() + SPACE + getLimit();
+	}
+	
+    public String getWhere(){
         StringBuilder sb = new StringBuilder();
         if(isValid(phrases)){
             sb.append(phrases.get(0));
@@ -72,12 +74,22 @@ public class Pager<T> implements Sql {
                 sb.append(SPACE).append(phrases.get(i));
             }
         }
+        return sb.toString().trim();
+    }
+    
+    public String getOrderBy() {
+        StringBuilder sb = new StringBuilder();
         if(isValid(orderBys)){
-            sb.append(" order by ").append(orderBys.get(0));
+            sb.append("order by ").append(orderBys.get(0));
             for(int i=1; i<orderBys.size(); i++){
                 sb.append(", ").append(orderBys.get(i));
             }
         }
+        return sb.toString().trim();
+    }
+    
+    public String getLimit() {
+        StringBuilder sb = new StringBuilder();
         if (this.pagesize >= 0) {
             if (this.pagesize == 0) {
                 this.pagesize = 1;
@@ -87,8 +99,7 @@ public class Pager<T> implements Sql {
             }
             sb.append(" limit ").append((pagecode - 1) * pagesize).append(", ").append(pagesize);
         }
-        retStr = sb.toString().trim();
-        return retStr;
+        return sb.toString().trim();
     }
     
 	public Pager<T> appendPhrases(Collection<Phrase> phrases){
