@@ -1,6 +1,4 @@
 (function($){
-    $.extend($, {});
-    
     $.extend($.fn, {
         tabtrigger: function(options) {
             var settings = $.extend({}, {

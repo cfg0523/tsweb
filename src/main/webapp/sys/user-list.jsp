@@ -14,7 +14,8 @@
 <script type="text/javascript" src="<c:url value="/static/js/jquery.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.form.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/bootstrap/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/static/js/tsweb.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/js/tsweb-tabtrigger.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/js/tsweb-pager.js"/>"></script>
 
 <script type="text/javascript">
 $(function(){
@@ -125,6 +126,7 @@ $(function(){
                                                 <div class="col-md-1 col-sm-1 col-xs-1">
                                                     <input type="text" class="form-control" id="pageskip" value="${pager.pagecode}"/>
                                                     <input type="hidden" class="form-control" name="pagecode" id="pagecode" value="${pager.pagecode}"/>
+                                                    <input type="hidden" class="form-control" id="maxpagecode" value="${pager.maxpagecode}"/>
                                                     <input type="hidden" class="form-control" name="pagesize" value="${pager.pagesize}"/>
                                                 </div>
                                                 <div class="col-md-10 col-sm-10 col-xs-10" style="height:34px;">
