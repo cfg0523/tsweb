@@ -27,7 +27,6 @@ public class UserController {
 
     @RequestMapping("/sys/user")
     public String list(Pager<User> pager, Model model) {
-        
         pager = this.userService.findByPager(pager);
         model.addAttribute("users", pager.getEntities());
         model.addAttribute("pager", pager);

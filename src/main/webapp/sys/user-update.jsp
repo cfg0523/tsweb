@@ -13,7 +13,7 @@
             <div class="form-group">
                 <label class="col-md-1 control-label" for="username">用户名</label>
                 <div class="col-md-5">
-                    <input type="text" class="form-control" name="username" id="username" value="${user.username}"/>
+                    <input type="text" class="form-control" name="username" id="username" value="${user.username}" readonly/>
                 </div>
             </div>
             <div class="form-group">
