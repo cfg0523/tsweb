@@ -26,26 +26,15 @@ public class UserController {
     private MenuService menuService;
 
     @RequestMapping("/sys/user")
-    public String list(Model model) {
-        Pager<User> pager = new Pager<User>();
-        pager = this.userService.findByPager(pager);
+    public String list(Pager<User> pager, Model model) {
         
+        pager = this.userService.findByPager(pager);
         model.addAttribute("users", pager.getEntities());
         model.addAttribute("pager", pager);
         
         return "sys/user-list";
     }
     
-    @RequestMapping("/sys/user/page")
-    public String pager(Pager<User> pager, Model model) {
-        
-        pager = this.userService.findByPager(pager);
-        model.addAttribute("users", pager.getEntities());
-        model.addAttribute("pager", pager);
-        
-        return "sys/user-list";
-    }
-
     @RequestMapping(value = "/sys/user/add", method = RequestMethod.GET)
     public String add(Model model) {
         List<Menu> menus = this.menuService.findAll();
