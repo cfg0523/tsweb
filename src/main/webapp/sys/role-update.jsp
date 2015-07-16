@@ -11,13 +11,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-1 control-label" for="username">角色名</label>
+                <label class="col-md-1 control-label" for="name">角色名</label>
                 <div class="col-md-5">
                     <input type="text" class="form-control" name="name" id="name" value="${role.name}" readonly/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-1 control-label" for="username">角色描述</label>
+                <label class="col-md-1 control-label" for="label">角色描述</label>
                 <div class="col-md-5">
                     <input type="text" class="form-control" name="label" id="label" value="${role.label}"/>
                 </div>

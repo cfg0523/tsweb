@@ -10,13 +10,10 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/bootstrap/css/bootstrap.min.css"/>"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/tsweb.css"/>"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/static/zTree_v3/css/zTreeStyle/zTreeStyle.css"/>"/>
 
 <script type="text/javascript" src="<c:url value="/static/js/jquery.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.form.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/bootstrap/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/static/zTree_v3/js/jquery.ztree.all-3.5.min.js"/>"></script>
-
 <script type="text/javascript" src="<c:url value="/static/js/tsweb.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/tsweb-pager.js"/>"></script>
 
@@ -30,27 +27,12 @@ $(function(){
         e.preventDefault();
         $(this).tabtrigger();
     });
-    
-    var $modalzone = $('#modalzone');
-    $('.modal-trigger').on('click', function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var url = $this.attr('href') || $this.data('url');
-        if (url) {
-            $.get(url, function(html) {
-                $modalzone.html(html).find('.modal').modal({
-                    backdrop: 'static'
-                });
-            });
-        }
-    });
 });
 </script>
 
 <title>TSWEB</title>
 </head>
 <body>
-    <div id="modalzone"></div>
     <div class="navbar navbar-inverse navbar-fixed-top" id="page-header">
         <jsp:include page="/header.jsp"/>
     </div>
@@ -62,43 +44,40 @@ $(function(){
             </div>
             <div class="col-md-10" id="page-content">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#user-list">用户列表</a></li>
+                    <li class="active"><a href="#menu-list">菜单列表</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="user-list">
+                    <div class="tab-pane active" id="menu-list">
                         <div class="panel panel-default">
                             <table class="table table-hover table-responsive table-condensed">
                                 <thead>
                                     <tr>
-                                        <th>用户ID</th>
-                                        <th>用户名</th>
-                                        <th>首页</th>
+                                        <th>菜单ID</th>
+                                        <th>菜单名</th>
+                                        <th>菜单描述</th>
+                                        <th>菜单路径</th>
+                                        <th>资源分组</th>
+                                        <th>组内索引</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${users}" var="user">
+                                    <c:forEach items="${menus}" var="menu">
                                     <tr>
-                                        <td>${user.id}</td>
-                                        <td>${user.username}</td>
-                                        <td>${user.indexMenu.path}</td>
+                                        <td>${menu.id}</td>
+                                        <td>${menu.name}</td>
+                                        <td>${menu.label}</td>
+                                        <td>${menu.path}</td>
+                                        <td>${menu.resourceGroup}</td>
+                                        <td>${menu.resourceIndex}</td>
                                         <td>
-                                            <a href="<c:url value="/sys/user/auth/${user.id}"/>" class="btn-link modal-trigger"
-                                                data-url="<c:url value="/sys/user/auth/${user.id}"/>"
-                                                >用户授权</a>
-                                            <a href="<c:url value="/sys/user/update/${user.id}"/>" class="btn-link tab-trigger"
-                                                data-url="<c:url value="/sys/user/update/${user.id}"/>"
-                                                data-tabpaneid="user-update-${user.id}"
-                                                data-tablabel="修改用户:${user.username}"
+                                            <a href="<c:url value="/sys/menu/update/${menu.id}"/>" class="btn-link tab-trigger"
+                                                data-url="<c:url value="/sys/menu/update/${menu.id}"/>"
+                                                data-tabpaneid="menu-update-${menu.id}"
+                                                data-tablabel="修改菜单:${menu.name}"
                                                 data-navtabs=".nav-tabs"
                                                 data-tabcontent=".tab-content">修改</a>
-                                            <a href="<c:url value="/sys/user/chgpwd/${user.id}"/>" class="btn-link tab-trigger"
-                                                data-url="<c:url value="/sys/user/chgpwd/${user.id}"/>"
-                                                data-tabpaneid="user-chgpwd-${user.id}"
-                                                data-tablabel="修改密码:${user.username}"
-                                                data-navtabs=".nav-tabs"
-                                                data-tabcontent=".tab-content">修改密码</a>
-                                            <a href="<c:url value="/sys/user/delete/${user.id}"/>" class="btn-link">删除</a>
+                                            <a href="<c:url value="/sys/menu/delete/${menu.id}"/>" class="btn-link">删除</a>
                                         </td>
                                     </tr>
                                     </c:forEach>
@@ -106,7 +85,7 @@ $(function(){
                             </table>
                             <div class="panel-body">
                                 <div class="col-md-6">
-                                    <form action="<c:url value="/sys/user"/>" method="post">
+                                    <form action="<c:url value="/sys/menu"/>" method="post">
                                         <div class="query-group">
                                             <c:forEach begin="0" end="${pager.phrases.size() > 2 ? pager.phrases.size() - 1 : 2}" var="index">
                                             <c:set var="phrase" value="${pager.phrases[index]}"/>
@@ -120,8 +99,12 @@ $(function(){
                                                 <div class="col-md-4 col-sm-4 col-xs-4">
                                                     <select class="form-control" name="phrases[${index}].condition">
                                                         <option value="" ${empty phrase.condition ? "selected" : ""}></option>
-                                                        <option value="user_id" ${phrase.condition == "user_id" ? "selected" : ""} >用户ID</option>
-                                                        <option value="user_name" ${phrase.condition == "user_name" ? "selected" : ""} >用户名</option>
+                                                        <option value="menu_id" ${phrase.condition == "menu_id" ? "selected" : ""} >菜单ID</option>
+                                                        <option value="menu_name" ${phrase.condition == "menu_name" ? "selected" : ""} >菜单名</option>
+                                                        <option value="menu_label" ${phrase.condition == "menu_label" ? "selected" : ""} >菜单描述</option>
+                                                        <option value="menu_path" ${phrase.condition == "menu_path" ? "selected" : ""} >菜单路径</option>
+                                                        <option value="menu_resource_group" ${phrase.condition == "menu_resource_group" ? "selected" : ""} >资源分组</option>
+                                                        <option value="menu_resource_index" ${phrase.condition == "menu_resource_index" ? "selected" : ""} >组内索引</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2 col-sm-2 col-xs-2">
@@ -167,10 +150,10 @@ $(function(){
                                     </form>
                                 </div>
                                 <div class="col-md-6" style="margin-top:5px; padding-left:0; padding-right:0;">
-                                    <a href="<c:url value="/sys/user/add"/>" class="btn btn-primary tab-trigger pull-right"
-                                        data-url="<c:url value="/sys/user/add"/>"
+                                    <a href="<c:url value="/sys/menu/add"/>" class="btn btn-primary tab-trigger pull-right"
+                                        data-url="<c:url value="/sys/menu/add"/>"
                                         data-tabpaneid="user-add"
-                                        data-tablabel="添加用户"
+                                        data-tablabel="添加菜单"
                                         data-navtabs=".nav-tabs"
                                         data-tabcontent=".tab-content">添加</a>
                                 </div>

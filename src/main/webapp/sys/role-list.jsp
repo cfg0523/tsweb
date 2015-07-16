@@ -14,7 +14,7 @@
 <script type="text/javascript" src="<c:url value="/static/js/jquery.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/jquery.form.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/bootstrap/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/static/js/tsweb-tabtrigger.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/static/js/tsweb.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/static/js/tsweb-pager.js"/>"></script>
 
 <script type="text/javascript">

@@ -15,9 +15,9 @@ create table sys_user_mstr (
     primary key(user_id),
     unique key(user_name)
 ) comment '用户表';
-insert into sys_user_mstr values ('U01', 'hayden', 'hayden', 'M01', '', null, '', null, '');
+insert into sys_user_mstr values ('U01', 'hayden', 'hayden', 'M06', '', null, '', null, '');
 insert into sys_user_mstr values ('U02', 'fantasy', 'fantasy', 'M04', '', null, '', null, '');
-insert into sys_user_mstr values ('U03', 'giny', 'giny', 'M01', '', null, '', null, '');
+insert into sys_user_mstr values ('U03', 'giny', 'giny', 'M06', '', null, '', null, '');
 insert into sys_user_mstr values ('U04', 'yilia', 'yilia', 'M02', '', null, '', null, '');
 insert into sys_user_mstr values ('U05', 'tracy', 'tracy', 'M02', '', null, '', null, '');
 

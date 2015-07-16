@@ -5,7 +5,7 @@
     <div class="panel-body">
         <form action="<c:url value="/sys/role/add"/>" class="form-horizontal" method="post">
             <div class="form-group">
-                <label class="col-md-1 control-label" for="label">角色名</label>
+                <label class="col-md-1 control-label" for="name">角色名</label>
                 <div class="col-md-5">
                     <input type="text" class="form-control" name="name" id="name"/>
                 </div>

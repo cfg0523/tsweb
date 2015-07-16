@@ -21,14 +21,6 @@ public class Menu extends BaseEntity<Menu> implements Resource {
     
     private Menu parent;
     private List<Menu> subMenus;
-
-    /**
-     * 根据resourceIndex计算出授权码
-     */
-    @Override
-    public int getAuthCode() {
-        return 1 << this.resourceIndex;
-    }
     
     /**
      * 转换为二进制位权限对象
@@ -36,6 +28,14 @@ public class Menu extends BaseEntity<Menu> implements Resource {
     public BinaryPermission binaryPermission() {
         return new BinaryPermission(this.getResourceType().toString(),
                 this.resourceGroup, this.getAuthCode());
+    }
+
+    /**
+     * 根据resourceIndex计算出授权码
+     */
+    @Override
+    public int getAuthCode() {
+        return 1 << this.resourceIndex;
     }
 
     @Override

@@ -82,4 +82,10 @@ public class UserController {
         return "redirect:/sys/user";
     }
     
+    @RequestMapping("/sys/user/auth/{userId}")
+    public String auth(@PathVariable String userId, Model model) {
+        
+        return "sys/user-auth";
+    }
+    
 }
