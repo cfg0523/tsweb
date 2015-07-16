@@ -52,7 +52,6 @@ $(function(){
                             <table class="table table-hover table-responsive table-condensed">
                                 <thead>
                                     <tr>
-                                        <th><input type="checkbox" title="select all"></th>
                                         <th>用户ID</th>
                                         <th>用户名</th>
                                         <th>首页</th>
@@ -62,7 +61,6 @@ $(function(){
                                 <tbody>
                                     <c:forEach items="${users}" var="user">
                                     <tr>
-                                        <th><input type="checkbox" name="selectIds" value="${user.id}"></th>
                                         <td>${user.id}</td>
                                         <td>${user.username}</td>
                                         <td>${user.indexMenu.path}</td>

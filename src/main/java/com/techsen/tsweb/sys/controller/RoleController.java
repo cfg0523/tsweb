@@ -50,4 +50,10 @@ public class RoleController {
         return "redirect:/sys/role";
     }
     
+    @RequestMapping("/sys/role/delete/{roleId}")
+    public String delete(@PathVariable String roleId) {
+        this.roleService.delete(new Role().setId(roleId));
+        return "redirect:/sys/role";
+    }
+    
 }

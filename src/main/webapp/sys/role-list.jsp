@@ -52,7 +52,6 @@ $(function(){
                             <table class="table table-hover table-responsive table-condensed">
                                 <thead>
                                     <tr>
-                                        <th><input type="checkbox" title="select all"></th>
                                         <th>角色ID</th>
                                         <th>角色名</th>
                                         <th>角色描述</th>
@@ -62,7 +61,6 @@ $(function(){
                                 <tbody>
                                     <c:forEach items="${roles}" var="role">
                                     <tr>
-                                        <th><input type="checkbox" name="selectIds" value="${role.id}"></th>
                                         <td>${role.id}</td>
                                         <td>${role.name}</td>
                                         <td>${role.label}</td>
