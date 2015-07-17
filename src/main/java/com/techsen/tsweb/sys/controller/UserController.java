@@ -84,7 +84,6 @@ public class UserController {
     
     @RequestMapping("/sys/user/auth/{userId}")
     public String auth(@PathVariable String userId, Model model) {
-        
         return "sys/user-auth";
     }
     

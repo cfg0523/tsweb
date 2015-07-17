@@ -21,14 +21,16 @@
 </div>
 
 <script type="text/javascript">
-    var setting = {
+
+    /* var setting = {
         check: {
             enable: true,
             chkStyle: 'checkbox'
         },
         data: {
             key: {
-                name: 'label'
+                name: 'label',
+                checked: 'checked'
             },
             simpleData: {
                 enable: true,
@@ -39,7 +41,7 @@
         }
     };
     
-    var zNodes =[
+    var zNodes = [
         {group:null, name:"tsweb", label: 'TSWEB', open:true},
         {group:'tsweb', name:"sys", label: '系统管理', open:true},
         {group:'tsweb', name:"qareport", label: 'QAReport', open:true},
@@ -56,10 +58,10 @@
         {group:'master', name:"aqlmaster", label: 'Aql Master'},
         {group:'master', name:"codemaster", label: 'Code Master'},
         {group:'report', name:"forreport", label: 'For Report'},
-        {group:'report', name:"genreport", label: 'Gen Report'},
+        {group:'report', name:"genreport", label: 'Gen Report', checked:true},
     ];
     
     $(document).ready(function(){
         $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-    });
+    }); */
 </script>
