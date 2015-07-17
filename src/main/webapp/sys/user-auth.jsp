@@ -48,29 +48,17 @@
         {group:'sys', name:"role", label: '角色管理'},
         {group:'sys', name:"menu", label: '菜单管理'},
         {group:'qareport', name:"daily", label: 'Daily'},
-        {group:'qareport', name:"master", label: 'Master'},
-        {group:'qareport', name:"report", label: 'Report'},
+        {group:'qareport', name:"master", label: 'Master', open:true},
+        {group:'qareport', name:"report", label: 'Report', open:true},
         {group:'module', name:"csm", label: 'CSM'},
         {group:'module', name:"ehr", label: 'EHR'},
+        {group:'master', name:"pomaster", label: 'PO Master'},
+        {group:'master', name:"aqlmaster", label: 'Aql Master'},
+        {group:'master', name:"codemaster", label: 'Code Master'},
+        {group:'report', name:"forreport", label: 'For Report'},
+        {group:'report', name:"genreport", label: 'Gen Report'},
     ];
     
-    /* var setting = {
-        check: {
-            enable: true
-        },
-        data: {
-            key: {
-                name: 'label'
-            },
-            simpleData: {
-                enable: true,
-                idKey: 'name',
-                pIdKey: 'group',
-                rootPId: null
-            }
-        }
-    }; */
-
     $(document).ready(function(){
         $.fn.zTree.init($("#treeDemo"), setting, zNodes);
     });
